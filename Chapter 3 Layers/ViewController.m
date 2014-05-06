@@ -11,9 +11,22 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *drawingView;
 
+@property (strong, nonatomic) CALayer *lay11;
+
 @end
 
 @implementation ViewController
+
+
+#pragma mark actions
+- (IBAction)maskToBoundsChanged:(UISwitch *)sender
+{
+    self.lay11.masksToBounds = !self.lay11.masksToBounds;
+//    [self.drawingView setNeedsDisplay];
+}
+
+
+#pragma mark UIViewController
 
 - (void)viewDidLoad
 {
@@ -24,30 +37,13 @@
     [self drawTwoLayersAndAView];
 }
 
--(void) drawTwoLayersAndAView
+- (void)didReceiveMemoryWarning
 {
-    CALayer *lay1 = [CALayer new];
-    lay1.frame = CGRectMake(413, 11, 132, 194);
-    lay1.backgroundColor = [[UIColor colorWithRed: 1 green: .4 blue: 1 alpha: 1] CGColor];
-    [self.drawingView.layer addSublayer:lay1];
-    
-    CALayer *lay2 = [CALayer new];
-    lay2.frame = CGRectMake(41, 56, 132, 194);
-    lay2.backgroundColor = [[UIColor colorWithRed: .5 green: 1 blue: 0 alpha: 1] CGColor];
-    [lay1 addSublayer:lay2];
-    
-    UIImageView* iv =
-    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smileyiPhone"]];
-    CGRect r = iv.frame;
-    r.origin = CGPointMake(460,76);
-    iv.frame = r;
-    [self.drawingView addSubview:iv];
-    
-    CALayer *lay3 = [CALayer new];
-    lay3.frame = CGRectMake(343, 97, 160, 230);
-    lay3.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
-    [self.drawingView.layer addSublayer:lay3];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+#pragma mark drawing
 
 -(void) drawThreeLayers
 {
@@ -67,11 +63,34 @@
     [self.drawingView.layer addSublayer:lay3];
 }
 
-
-- (void)didReceiveMemoryWarning
+-(void) drawTwoLayersAndAView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.lay11 = [CALayer new];
+    self.lay11.frame = CGRectMake(413, 11, 132, 194);
+    self.lay11.backgroundColor = [[UIColor colorWithRed: 1 green: .4 blue: 1 alpha: 1] CGColor];
+    [self.drawingView.layer addSublayer:self.lay11];
+    
+    CALayer *lay21 = [CALayer new];
+    lay21.frame = CGRectMake(41, 56, 132, 194);
+    lay21.backgroundColor = [[UIColor colorWithRed: .5 green: 1 blue: 0 alpha: 1] CGColor];
+    [self.lay11 addSublayer: lay21];
+    
+    UIImageView* iv =
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smileyiPhone"]];
+    CGRect r = iv.frame;
+    r.origin = CGPointMake(460,76);
+    iv.frame = r;
+    [self.drawingView addSubview:iv];
+    
+    CALayer *lay31 = [CALayer new];
+    lay31.frame = CGRectMake(343, 97, 160, 230);
+    lay31.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
+    [self.drawingView.layer addSublayer:lay31];
 }
+
+
+
+
+
 
 @end
