@@ -22,9 +22,11 @@
 - (IBAction)maskToBoundsChanged:(UISwitch *)sender
 {
     self.lay11.masksToBounds = !self.lay11.masksToBounds;
-//    [self.drawingView setNeedsDisplay];
 }
 
+- (IBAction)hiddenChanged:(UISwitch *)sender {
+    self.lay11.hidden = !self.lay11.hidden;
+}
 
 #pragma mark UIViewController
 
