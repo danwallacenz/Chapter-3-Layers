@@ -13,6 +13,10 @@
 
 @property (strong, nonatomic) CALayer *lay11;
 
+@property (strong, nonatomic) CALayer *blueLayer;
+@property (strong, nonatomic) CALayer *orangeLayer;
+@property (strong, nonatomic) CALayer *yellowLayer;
+
 @end
 
 @implementation ViewController
@@ -37,6 +41,7 @@
     
     [self drawThreeLayers];
     [self drawTwoLayersAndAView];
+    [self drawThreeLayersToManipulateTheLayerHeirarchy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +51,28 @@
 }
 
 #pragma mark drawing
+
+-(void) drawThreeLayersToManipulateTheLayerHeirarchy
+{
+    UIView *layerHierarchyContainer = [[UIView alloc]initWithFrame:CGRectMake(100,420,300,300)];
+    layerHierarchyContainer.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:layerHierarchyContainer];
+    
+    self.blueLayer = [CALayer new];
+    self.blueLayer.frame = CGRectMake(10, 10, 100, 100);
+    self.blueLayer.backgroundColor = [[UIColor blueColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.blueLayer];
+    
+    self.orangeLayer = [CALayer new];
+    self.orangeLayer.frame = CGRectMake(50, 50, 100, 100);
+    self.orangeLayer.backgroundColor = [[UIColor orangeColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.orangeLayer];
+    
+    self.yellowLayer = [CALayer new];
+    self.yellowLayer.frame = CGRectMake(100, 100,100, 100);
+    self.yellowLayer.backgroundColor = [[UIColor yellowColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.yellowLayer];
+}
 
 -(void) drawThreeLayers
 {
@@ -89,10 +116,6 @@
     lay31.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
     [self.drawingView.layer addSublayer:lay31];
 }
-
-
-
-
 
 
 @end
