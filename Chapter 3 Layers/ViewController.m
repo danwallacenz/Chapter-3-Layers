@@ -162,6 +162,74 @@
 
 #pragma mark UIViewController
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
+    CALayer *containerLayer = self.layerHierarchyContainer.layer;
+    NSLog(@"container origin = %f %f", self.layerHierarchyContainer.frame.origin.x, self.layerHierarchyContainer.frame.origin.y);
+    
+    
+//    NSLog(@" ");
+//    CGPoint layer0Origin = [containerLayer convertPoint: self.layer0.frame.origin fromLayer: self.layer0];
+//    NSLog(@"layer0 origin relative to container = %f %f", layer0Origin.x, layer0Origin.y);
+//    
+//    CGPoint layer1Origin = [containerLayer convertPoint: self.layer1.frame.origin fromLayer: self.layer1];
+//    NSLog(@"layer1 origin relative to container = %f %f", layer1Origin.x, layer1Origin.y);
+//    
+//    CGPoint layer2Origin = [containerLayer convertPoint: self.layer2.frame.origin fromLayer: self.layer2];
+//    NSLog(@"layer2 origin relative to container = %f %f", layer2Origin.x, layer2Origin.y);
+
+    
+    NSLog(@" ");
+//    CGPoint layer0RelativePosition = [containerLayer convertPoint: self.layer0.position fromLayer: self.layer0];
+//    NSLog(@"layer0 position relative to container = %f %f", layer0RelativePosition.x, layer0RelativePosition.y);
+//    
+//    CGPoint layer1RelativePosition = [containerLayer convertPoint: self.layer1.position fromLayer: self.layer1];
+//    NSLog(@"layer1 position relative to container = %f %f", layer1RelativePosition.x, layer1RelativePosition.y);
+//    
+//    CGPoint layer2RelativePosition = [containerLayer convertPoint: self.layer2.position fromLayer: self.layer2];
+//    NSLog(@"layer2 position relative to container = %f %f", layer2RelativePosition.x, layer2RelativePosition.y);
+    
+    
+    NSLog(@" ");
+    CALayer *viewLayer = self.view.layer;
+    
+    NSLog(@"layer0.frame.origin = %f %f", self.layer0.frame.origin.x, self.layer0.frame.origin.y);
+    CGPoint layer0OriginRelativeToMainView = [viewLayer convertPoint: self.layer0.frame.origin fromLayer: self.layer0];
+//    CGPoint layer0OriginRelativeToMainView = [self.layer0 convertPoint: self.layer0.frame.origin fromLayer: viewLayer];
+    NSLog(@"layer0 origin relative to main view = %f %f", layer0OriginRelativeToMainView.x, layer0OriginRelativeToMainView.y);
+    [self addCenterMark: self.layer0];
+    
+    NSLog(@" ");
+    NSLog(@"layer1.frame.origin = %f %f", self.layer1.frame.origin.x, self.layer1.frame.origin.y);
+    CGPoint layer1OriginRelativeToMainView = [viewLayer convertPoint: self.layer1.frame.origin fromLayer: self.layer1];
+//    CGPoint layer1OriginRelativeToMainView = [self.layer1 convertPoint: self.layer1.frame.origin fromLayer: viewLayer];
+    NSLog(@"layer1 origin relative to main view = %f %f", layer1OriginRelativeToMainView.x, layer1OriginRelativeToMainView.y);
+    [self addCenterMark: self.layer1];
+    
+    NSLog(@" ");
+    NSLog(@"layer2.frame.origin = %f %f", self.layer2.frame.origin.x, self.layer2.frame.origin.y);
+    CGPoint layer2OriginRelativeToMainView = [viewLayer convertPoint: self.layer2.frame.origin fromLayer: self.layer2];
+//    CGPoint layer2OriginRelativeToMainView = [self.layer2 convertPoint: self.layer2.frame.origin fromLayer: viewLayer];
+    NSLog(@"layer2 origin relative to main view = %f %f", layer2OriginRelativeToMainView.x, layer2OriginRelativeToMainView.y);
+    [self addCenterMark: self.layer2];
+    
+    NSLog(@" ");
+
+//    CGPoint layer0AbsolutePosition = [viewLayer convertPoint: self.layer0.position fromLayer: self.layer0];
+//    NSLog(@"layer0 position relative to self.view = %f %f", layer0AbsolutePosition.x, layer0AbsolutePosition.y);
+//
+//    CGPoint layer1AbsolutePosition = [viewLayer convertPoint: self.layer1.position fromLayer: self.layer1];
+//    NSLog(@"layer1 position relative to self.view = %f %f", layer1AbsolutePosition.x, layer1AbsolutePosition.y);
+//    
+//    CGPoint layer2AbsolutePosition = [viewLayer convertPoint: self.layer2.position fromLayer: self.layer2];
+//    NSLog(@"layer2 position relative to self.view = %f %f", layer2AbsolutePosition.x, layer2AbsolutePosition.y);
+    
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -182,7 +250,7 @@
 
 -(void) drawThreeLayersToManipulateTheLayerHierarchy
 {
-    UIView *layerHierarchyContainer = [[UIView alloc]initWithFrame:CGRectMake(43,420,300,300)];
+    UIView *layerHierarchyContainer = [[UIView alloc]initWithFrame:CGRectMake(40, 400, 300, 300)];
     layerHierarchyContainer.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:layerHierarchyContainer];
     
@@ -197,12 +265,34 @@
     [layerHierarchyContainer.layer addSublayer: self.layer1];
     
     self.layer2 = [CALayer new];
-    self.layer2.frame = CGRectMake(100, 100,100, 100);
+    self.layer2.frame = CGRectMake(100, 100, 100, 100);
     self.layer2.backgroundColor = [[UIColor yellowColor] CGColor];
     [layerHierarchyContainer.layer addSublayer: self.layer2];
     
     self.layerHierarchyContainer = layerHierarchyContainer;
+    
+//    [self printCoordinateSystemsConversionsFromLayer: layerHierarchyContainer.layer toLayer: self.layer0];
+//    [self printCoordinateSystemsConversionsFromLayer: self.layer0 toLayer: self.view.layer];
 }
+
+//-(void)printCoordinateSystemsConversionsFromLayer: (CALayer *)fromLayer toLayer: (CALayer *)toLayer
+//{
+//    CGPoint fromLayerPosition = fromLayer.position;
+////    CGPoint fromLayerAnchorPoint = fromLayer.anchorPoint;
+//    CGRect fromLayerBounds = fromLayer.bounds;
+//    
+//    CGPoint toLayerPosition = toLayer.position;
+////    CGPoint toLayerAnchorPoint = toLayer.anchorPoint;
+//    CGRect toLayerBounds = toLayer.bounds;
+//    
+//    CGPoint toLayerCenterConvertedFrom  = [fromLayer convertPoint: toLayerPosition fromLayer: toLayer];
+//    CGPoint toLayerCenterConvertedTo    = [fromLayer convertPoint: toLayerPosition toLayer: toLayer];
+//    
+////    CGPoint fromLayerCenterConvertedFrom    = [fromLayer convertPoint: fromLayerPosition fromLayer: toLayer];
+////    CGPoint fromLayerCenterConvertedTo      = [fromLayer convertPoint: fromLayerPosition toLayer: toLayer];
+//    
+//    NSLog(@"");
+//}
 
 -(void) drawTwoLayersAndAView
 {
@@ -274,6 +364,22 @@
     CGFloat blue = arc4random() % 256 / 255.0;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
     return color;
+}
+
+- (void) addCenterMark: (CALayer*)layer
+{
+//    CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: self.view.layer];
+    CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: layer.superlayer];
+    NSLog(@"center = %f, %f", center.x, center.y);
+    
+    CGRect centerRect = CGRectMake(0, 0, 4, 4);
+    
+    UIView *centerPoint = [[UIView alloc] initWithFrame: centerRect];
+    centerPoint.center = center;
+    
+    centerPoint.backgroundColor = [UIColor blackColor];
+    
+    [self.view addSubview:centerPoint];
 }
 
 @end
