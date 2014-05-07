@@ -13,22 +13,50 @@
 
 @property (strong, nonatomic) CALayer *lay11;
 
+
 // Manipulating the layer heirarchy
+@property (weak, nonatomic) UIView *layerHierarchyContainer;
+
 @property (strong, nonatomic) CALayer *blueLayer;
 @property (strong, nonatomic) CALayer *orangeLayer;
 @property (strong, nonatomic) CALayer *yellowLayer;
 
 @property (strong, nonatomic) CALayer *layerToInsertAndRemove;
+@property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexZero;
+@property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexOne;
 
 @end
 
 @implementation ViewController
 
--(void)makeLayerToInsertAndRemove
+-(CALayer *)makeLayerToInsertAndRemove
 {
-    self.layerToInsertAndRemove = [CALayer new];
-    self.layerToInsertAndRemove.backgroundColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
-    self.layerToInsertAndRemove.frame = CGRectMake(50, 50, 100, 100);
+    CALayer *layerToInsertAndRemove = [CALayer new];
+    layerToInsertAndRemove.backgroundColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
+    layerToInsertAndRemove.frame = CGRectMake(40, 40, 120, 120);
+    return layerToInsertAndRemove;
+}
+
+
+
+- (IBAction)insertLayerAtIndex0:(UISwitch *)sender
+{
+    if(sender.on){
+        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerToInsertAndRemove];
+        [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexZero atIndex: 0];
+    }else{
+        [self.layerToInsertAndRemoveAtIndexZero removeFromSuperlayer];
+    }
+}
+
+- (IBAction)insertLayerAtIndex1:(UISwitch *)sender
+{
+    if(sender.on){
+        self.layerToInsertAndRemoveAtIndexOne = [self makeLayerToInsertAndRemove];
+        [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexOne atIndex: 1];
+    }else{
+        [self.layerToInsertAndRemoveAtIndexOne removeFromSuperlayer];
+    }
 }
 
 
@@ -37,8 +65,10 @@
 - (IBAction)addRemoveSublayer:(UISwitch *)sender
 {
     if(sender.on){
-        [self makeLayerToInsertAndRemove];
-
+        if (!self.layerToInsertAndRemove){
+            self.layerToInsertAndRemove = [self makeLayerToInsertAndRemove];
+        }
+        self.layerToInsertAndRemove = [self makeLayerToInsertAndRemove];
         [self.yellowLayer addSublayer: self.layerToInsertAndRemove];
     }else{
         [self.layerToInsertAndRemove removeFromSuperlayer];
@@ -95,6 +125,8 @@
     self.yellowLayer.frame = CGRectMake(100, 100,100, 100);
     self.yellowLayer.backgroundColor = [[UIColor yellowColor] CGColor];
     [layerHierarchyContainer.layer addSublayer: self.yellowLayer];
+    
+    self.layerHierarchyContainer = layerHierarchyContainer;
 }
 
 -(void) drawThreeLayers
