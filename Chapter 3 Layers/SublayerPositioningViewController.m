@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UISlider *anchorPointYSlider;
 @property (weak, nonatomic) IBOutlet UILabel *anchorPointYLabel;
 
+@property (strong, nonatomic) UIView *currentCenterMark;
+
 @end
 
 @implementation SublayerPositioningViewController
@@ -34,6 +36,7 @@
 {
     self.layer0.position = CGPointMake(sender.value, self.yPositionSlider.value);
     self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addCenterMark:self.layer0];
 }
 
 
@@ -41,6 +44,7 @@
 {
     self.layer0.position = CGPointMake(self.xPositionSlider.value, sender.value);
     self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addCenterMark: self.layer0];
 }
 
 
@@ -70,5 +74,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) addCenterMark: (CALayer*)layer
+{
+    [self.currentCenterMark removeFromSuperview];
+    self.currentCenterMark = nil;
+    
+    CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: layer.superlayer];
+    NSLog(@"center = %f, %f", center.x, center.y);
+    
+    CGRect centerRect = CGRectMake(0, 0, 4, 4);
+    
+    UIView *centerPoint = [[UIView alloc] initWithFrame: centerRect];
+    centerPoint.center = center;
+    
+    centerPoint.backgroundColor = [UIColor redColor];
+    
+    [self.view addSubview:centerPoint];
+    self.currentCenterMark = centerPoint;
+}
 
 @end

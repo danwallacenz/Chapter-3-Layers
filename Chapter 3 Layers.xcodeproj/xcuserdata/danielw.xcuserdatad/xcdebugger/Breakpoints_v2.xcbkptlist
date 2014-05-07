@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chapter 3 Layers/SublayerPositioningViewController.m"
-            timestampString = "421153813.267493"
+            timestampString = "421154260.224761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-xPositionChanged:"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-yPositionChanged:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

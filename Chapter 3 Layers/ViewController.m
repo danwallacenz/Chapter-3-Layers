@@ -368,7 +368,6 @@
 
 - (void) addCenterMark: (CALayer*)layer
 {
-//    CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: self.view.layer];
     CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: layer.superlayer];
     NSLog(@"center = %f, %f", center.x, center.y);
     
