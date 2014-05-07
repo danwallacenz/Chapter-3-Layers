@@ -37,12 +37,19 @@
     return layerToInsertAndRemove;
 }
 
-
+-(CALayer *)makeLayerOfSize:(CGFloat) size withColor: (UIColor *)color
+{
+    CALayer *layer = [CALayer new];
+    layer.backgroundColor = [color CGColor];
+    layer.frame = CGRectMake(40, 40, size, size);
+    return layer;
+}
 
 - (IBAction)insertLayerAtIndex0:(UISwitch *)sender
 {
     if(sender.on){
-        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerToInsertAndRemove];
+//        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerToInsertAndRemove];
+        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerOfSize:170.0 withColor:[UIColor purpleColor]];
         [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexZero atIndex: 0];
     }else{
         [self.layerToInsertAndRemoveAtIndexZero removeFromSuperlayer];
@@ -52,7 +59,8 @@
 - (IBAction)insertLayerAtIndex1:(UISwitch *)sender
 {
     if(sender.on){
-        self.layerToInsertAndRemoveAtIndexOne = [self makeLayerToInsertAndRemove];
+//        self.layerToInsertAndRemoveAtIndexOne = [self makeLayerToInsertAndRemove];
+        self.self.layerToInsertAndRemoveAtIndexOne = [self makeLayerOfSize:160.0 withColor:[UIColor greenColor]];
         [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexOne atIndex: 1];
     }else{
         [self.layerToInsertAndRemoveAtIndexOne removeFromSuperlayer];
