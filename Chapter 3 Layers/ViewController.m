@@ -26,25 +26,27 @@
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexOne;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexTwo;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexThree;
+@property (strong, nonatomic) CALayer *layerToInsertBelow;
+
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *insertBelowSublayer;
+
+
 
 @end
 
 @implementation ViewController
 
--(CALayer *)makeLayerToInsertAndRemove
-{
-    CALayer *layerToInsertAndRemove = [CALayer new];
-    layerToInsertAndRemove.backgroundColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
-    layerToInsertAndRemove.frame = CGRectMake(40, 40, 120, 120);
-    return layerToInsertAndRemove;
-}
-
--(CALayer *)makeLayerOfSize:(CGFloat) size atPosition:(CGFloat) origin withColor: (UIColor *)color
-{
-    CALayer *layer = [CALayer new];
-    layer.backgroundColor = [[color colorWithAlphaComponent:0.8] CGColor];
-    layer.frame = CGRectMake(origin, origin, size, size);
-    return layer;
+- (IBAction)insertLayerBelow:(UISwitch *)sender {
+ 
+    if(sender.on){
+        self.layerToInsertBelow = [self makeLayerOfSize: 120.0 atPosition: 0.0 withColor:[UIColor redColor]];
+        NSInteger layerIndex = self.insertBelowSublayer.selectedSegmentIndex;
+        [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertBelow
+                                                     below: self.layerHierarchyContainer.layer.sublayers[layerIndex]];
+    }else{
+        [self.layerToInsertBelow removeFromSuperlayer];
+    }
 }
 
 - (IBAction)insertLayerAtIndex0:(UISwitch *)sender
@@ -87,7 +89,7 @@
     }
 }
 
-#pragma mark actions
+
 
 - (IBAction)addRemoveSublayer:(UISwitch *)sender
 {
@@ -102,7 +104,6 @@
     }
 }
 
-
 - (IBAction)maskToBoundsChanged:(UISwitch *)sender
 {
     self.lay11.masksToBounds = !self.lay11.masksToBounds;
@@ -111,6 +112,8 @@
 - (IBAction)hiddenChanged:(UISwitch *)sender {
     self.lay11.hidden = !self.lay11.hidden;
 }
+
+
 
 #pragma mark UIViewController
 
@@ -121,7 +124,7 @@
     
     [self drawThreeLayers];
     [self drawTwoLayersAndAView];
-    [self drawThreeLayersToManipulateTheLayerHeirarchy];
+    [self drawThreeLayersToManipulateTheLayerHierarchy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,9 +135,9 @@
 
 #pragma mark drawing
 
--(void) drawThreeLayersToManipulateTheLayerHeirarchy
+-(void) drawThreeLayersToManipulateTheLayerHierarchy
 {
-    UIView *layerHierarchyContainer = [[UIView alloc]initWithFrame:CGRectMake(100,420,300,300)];
+    UIView *layerHierarchyContainer = [[UIView alloc]initWithFrame:CGRectMake(43,420,300,300)];
     layerHierarchyContainer.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:layerHierarchyContainer];
     
@@ -154,24 +157,6 @@
     [layerHierarchyContainer.layer addSublayer: self.yellowLayer];
     
     self.layerHierarchyContainer = layerHierarchyContainer;
-}
-
--(void) drawThreeLayers
-{
-    CALayer *lay1 = [CALayer new];
-    lay1.frame = CGRectMake(113, 11, 132, 194);
-    lay1.backgroundColor = [[UIColor colorWithRed: 1 green: .4 blue: 1 alpha: 1] CGColor];
-    [self.drawingView.layer addSublayer:lay1];
-    
-    CALayer *lay2 = [CALayer new];
-    lay2.frame = CGRectMake(41, 56, 132, 194);
-    lay2.backgroundColor = [[UIColor colorWithRed: .5 green: 1 blue: 0 alpha: 1] CGColor];
-    [lay1 addSublayer:lay2];
-    
-    CALayer *lay3 = [CALayer new];
-    lay3.frame = CGRectMake(43, 97, 160, 230);
-    lay3.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
-    [self.drawingView.layer addSublayer:lay3];
 }
 
 -(void) drawTwoLayersAndAView
@@ -198,6 +183,43 @@
     lay31.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
     [self.drawingView.layer addSublayer:lay31];
 }
+
+-(void) drawThreeLayers
+{
+    CALayer *lay1 = [CALayer new];
+    lay1.frame = CGRectMake(113, 11, 132, 194);
+    lay1.backgroundColor = [[UIColor colorWithRed: 1 green: .4 blue: 1 alpha: 1] CGColor];
+    [self.drawingView.layer addSublayer:lay1];
+    
+    CALayer *lay2 = [CALayer new];
+    lay2.frame = CGRectMake(41, 56, 132, 194);
+    lay2.backgroundColor = [[UIColor colorWithRed: .5 green: 1 blue: 0 alpha: 1] CGColor];
+    [lay1 addSublayer:lay2];
+    
+    CALayer *lay3 = [CALayer new];
+    lay3.frame = CGRectMake(43, 97, 160, 230);
+    lay3.backgroundColor = [[UIColor colorWithRed: 1 green: 0 blue: 0 alpha: 1] CGColor];
+    [self.drawingView.layer addSublayer:lay3];
+}
+
+#pragma mark utilities
+
+-(CALayer *)makeLayerToInsertAndRemove
+{
+    CALayer *layerToInsertAndRemove = [CALayer new];
+    layerToInsertAndRemove.backgroundColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
+    layerToInsertAndRemove.frame = CGRectMake(40, 40, 120, 120);
+    return layerToInsertAndRemove;
+}
+
+-(CALayer *)makeLayerOfSize:(CGFloat) size atPosition:(CGFloat) origin withColor: (UIColor *)color
+{
+    CALayer *layer = [CALayer new];
+    layer.backgroundColor = [[color colorWithAlphaComponent:0.8] CGColor];
+    layer.frame = CGRectMake(origin, origin, size, size);
+    return layer;
+}
+
 
 
 @end
