@@ -11,6 +11,7 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *drawingView;
 
+@property (strong,nonatomic) UIImageView *smiley;
 @property (strong, nonatomic) CALayer *lay11;
 
 
@@ -36,9 +37,14 @@
 
 @implementation ViewController
 
+- (IBAction)zPositionChanged:(UISegmentedControl *)sender {
+    
+    self.smiley.layer.zPosition = sender.selectedSegmentIndex;
+}
+
+
 - (IBAction)replaceSublayerWithRandomColoredLayer:(UISegmentedControl *)sender {
     
-//    NSInteger layerIndexToReplace = self.replaceSublayer.selectedSegmentIndex;
     NSInteger layerIndexToReplace = sender.selectedSegmentIndex;
     
     CALayer *layerToReplace = self.layerHierarchyContainer.layer.sublayers[layerIndexToReplace];
@@ -210,12 +216,14 @@
     lay21.backgroundColor = [[UIColor colorWithRed: .5 green: 1 blue: 0 alpha: 1] CGColor];
     [self.lay11 addSublayer: lay21];
     
-    UIImageView* iv =
+    UIImageView* smiley =
     [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smileyiPhone"]];
-    CGRect r = iv.frame;
+    CGRect r = smiley.frame;
     r.origin = CGPointMake(460,76);
-    iv.frame = r;
-    [self.drawingView addSubview:iv];
+    smiley.frame = r;
+    [self.drawingView addSubview:smiley];
+    self.smiley = smiley; // for zPosition changes later.
+    
     
     CALayer *lay31 = [CALayer new];
     lay31.frame = CGRectMake(343, 97, 160, 230);
@@ -265,7 +273,6 @@
     CGFloat green = arc4random() % 256 / 255.0;
     CGFloat blue = arc4random() % 256 / 255.0;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
-    NSLog(@"%@", color);
     return color;
 }
 
