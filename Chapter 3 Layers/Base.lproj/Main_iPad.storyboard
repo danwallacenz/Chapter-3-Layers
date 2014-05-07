@@ -377,6 +377,9 @@
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="1024" translatesAutoresizingMaskIntoConstraints="NO" id="fMS-UO-WFs">
                                         <rect key="frame" x="18" y="49" width="305" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="xPositionChanged:" destination="3PG-vb-1Ne" eventType="valueChanged" id="lIh-DJ-Baa"/>
+                                        </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0KN-5d-PFg">
                                         <rect key="frame" x="18" y="242" width="322" height="31"/>
@@ -389,6 +392,9 @@
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="768" translatesAutoresizingMaskIntoConstraints="NO" id="zBR-lm-G7q">
                                         <rect key="frame" x="18" y="127" width="305" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="yPositionChanged:" destination="3PG-vb-1Ne" eventType="valueChanged" id="WLm-7k-dDe"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="x" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pit-jo-cCe">
                                         <rect key="frame" x="329" y="53" width="9" height="21"/>
@@ -409,13 +415,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNb-kn-SKP">
-                                        <rect key="frame" x="288" y="82" width="50" height="21"/>
+                                        <rect key="frame" x="229" y="82" width="109" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX7-hL-kaC">
-                                        <rect key="frame" x="288" y="165" width="50" height="21"/>
+                                        <rect key="frame" x="229" y="165" width="109" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -465,6 +471,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="sublayer positioning" id="veM-Sj-j0e"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="anchorPointXLabel" destination="znt-E5-3SX" id="1TQ-xz-pne"/>
+                        <outlet property="anchorPointXSlider" destination="0KN-5d-PFg" id="esc-mW-GxW"/>
+                        <outlet property="anchorPointYLabel" destination="hpH-PT-PV8" id="mCm-eB-fW1"/>
+                        <outlet property="anchorPointYSlider" destination="B87-zP-URe" id="c53-eg-kiX"/>
+                        <outlet property="positionXLabel" destination="sNb-kn-SKP" id="dFj-sn-07f"/>
+                        <outlet property="positionYLabel" destination="pX7-hL-kaC" id="Frr-RE-Rk5"/>
+                        <outlet property="xPositionSlider" destination="fMS-UO-WFs" id="gyW-XY-SwG"/>
+                        <outlet property="yPositionSlider" destination="zBR-lm-G7q" id="RR4-1d-mAV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SuR-2c-3a8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

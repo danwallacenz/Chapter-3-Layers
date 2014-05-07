@@ -12,9 +12,37 @@
 
 @property (strong, nonatomic) CALayer *layer0;
 
+
+@property (weak, nonatomic) IBOutlet UISlider *xPositionSlider;
+@property (weak, nonatomic) IBOutlet UILabel *positionXLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *yPositionSlider;
+@property (weak, nonatomic) IBOutlet UILabel *positionYLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *anchorPointXSlider;
+@property (weak, nonatomic) IBOutlet UILabel *anchorPointXLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *anchorPointYSlider;
+@property (weak, nonatomic) IBOutlet UILabel *anchorPointYLabel;
+
 @end
 
 @implementation SublayerPositioningViewController
+
+
+- (IBAction)xPositionChanged:(UISlider *)sender
+{
+    self.layer0.position = CGPointMake(sender.value, self.yPositionSlider.value);
+    self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+}
+
+
+- (IBAction)yPositionChanged:(UISlider *)sender
+{
+    self.layer0.position = CGPointMake(self.xPositionSlider.value, sender.value);
+    self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
