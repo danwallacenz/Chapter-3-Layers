@@ -13,16 +13,39 @@
 
 @property (strong, nonatomic) CALayer *lay11;
 
+// Manipulating the layer heirarchy
 @property (strong, nonatomic) CALayer *blueLayer;
 @property (strong, nonatomic) CALayer *orangeLayer;
 @property (strong, nonatomic) CALayer *yellowLayer;
+
+@property (strong, nonatomic) CALayer *layerToInsertAndRemove;
 
 @end
 
 @implementation ViewController
 
+-(void)makeLayerToInsertAndRemove
+{
+    self.layerToInsertAndRemove = [CALayer new];
+    self.layerToInsertAndRemove.backgroundColor = [[UIColor colorWithWhite:0 alpha:1] CGColor];
+    self.layerToInsertAndRemove.frame = CGRectMake(50, 50, 100, 100);
+}
+
 
 #pragma mark actions
+
+- (IBAction)addRemoveSublayer:(UISwitch *)sender
+{
+    if(sender.on){
+        [self makeLayerToInsertAndRemove];
+
+        [self.yellowLayer addSublayer: self.layerToInsertAndRemove];
+    }else{
+        [self.layerToInsertAndRemove removeFromSuperlayer];
+    }
+}
+
+
 - (IBAction)maskToBoundsChanged:(UISwitch *)sender
 {
     self.lay11.masksToBounds = !self.lay11.masksToBounds;
