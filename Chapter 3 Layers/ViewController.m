@@ -25,6 +25,7 @@
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexZero;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexOne;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexTwo;
+@property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexThree;
 
 @end
 
@@ -38,18 +39,18 @@
     return layerToInsertAndRemove;
 }
 
--(CALayer *)makeLayerOfSize:(CGFloat) size withColor: (UIColor *)color
+-(CALayer *)makeLayerOfSize:(CGFloat) size atPosition:(CGFloat) origin withColor: (UIColor *)color
 {
     CALayer *layer = [CALayer new];
     layer.backgroundColor = [[color colorWithAlphaComponent:0.8] CGColor];
-    layer.frame = CGRectMake(40, 40, size, size);
+    layer.frame = CGRectMake(origin, origin, size, size);
     return layer;
 }
 
 - (IBAction)insertLayerAtIndex0:(UISwitch *)sender
 {
     if(sender.on){
-        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerOfSize:170.0 withColor:[UIColor purpleColor]];
+        self.layerToInsertAndRemoveAtIndexZero = [self makeLayerOfSize: 120.0 atPosition: 0.0 withColor:[UIColor purpleColor]];
         [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexZero atIndex: 0];
     }else{
         [self.layerToInsertAndRemoveAtIndexZero removeFromSuperlayer];
@@ -59,7 +60,7 @@
 - (IBAction)insertLayerAtIndex1:(UISwitch *)sender
 {
     if(sender.on){
-        self.self.layerToInsertAndRemoveAtIndexOne = [self makeLayerOfSize:160.0 withColor:[UIColor greenColor]];
+        self.self.layerToInsertAndRemoveAtIndexOne = [self makeLayerOfSize: 120.0 atPosition:20.0 withColor:[UIColor greenColor]];
         [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexOne atIndex: 1];
     }else{
         [self.layerToInsertAndRemoveAtIndexOne removeFromSuperlayer];
@@ -69,12 +70,21 @@
 - (IBAction)insertLayerAtIndex2:(UISwitch *)sender
 {
     if(sender.on){
-        self.layerToInsertAndRemoveAtIndexTwo = [self makeLayerOfSize:150.0 withColor:[UIColor magentaColor]];
+        self.layerToInsertAndRemoveAtIndexTwo = [self makeLayerOfSize: 120.0 atPosition:40.0 withColor:[UIColor magentaColor]];
         [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexTwo atIndex: 2];
     }else{
         [self.layerToInsertAndRemoveAtIndexTwo removeFromSuperlayer];
     }
-    
+}
+
+- (IBAction)insertLayerAtIndex3:(UISwitch *)sender
+{
+    if(sender.on){
+        self.layerToInsertAndRemoveAtIndexThree = [self makeLayerOfSize: 120.0 atPosition:60.0 withColor:[UIColor lightGrayColor]];
+        [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAndRemoveAtIndexThree atIndex: 3];
+    }else{
+        [self.layerToInsertAndRemoveAtIndexThree removeFromSuperlayer];
+    }
 }
 
 #pragma mark actions
