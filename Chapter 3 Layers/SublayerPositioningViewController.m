@@ -26,16 +26,34 @@
 @property (weak, nonatomic) IBOutlet UILabel *anchorPointYLabel;
 
 @property (strong, nonatomic) UIView *currentCenterMark;
+@property (strong, nonatomic) UIView *currentAnchorPointMark;
 
 @end
 
 @implementation SublayerPositioningViewController
 
 
+- (IBAction)anchorPointXChanged:(UISlider *)sender
+{
+    self.layer0.anchorPoint = CGPointMake(sender.value, self.anchorPointYSlider.value);
+    self.anchorPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addAnchorPointMark: self.layer0];
+    [self addCenterMark: self.layer0];
+}
+
+- (IBAction)anchorPointY:(UISlider *)sender
+{
+    self.layer0.anchorPoint = CGPointMake( self.anchorPointXSlider.value, sender.value);
+    self.anchorPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addAnchorPointMark: self.layer0];
+    [self addCenterMark: self.layer0];
+}
+
 - (IBAction)xPositionChanged:(UISlider *)sender
 {
     self.layer0.position = CGPointMake(sender.value, self.yPositionSlider.value);
     self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addAnchorPointMark: self.layer0];
     [self addCenterMark:self.layer0];
 }
 
@@ -44,6 +62,7 @@
 {
     self.layer0.position = CGPointMake(self.xPositionSlider.value, sender.value);
     self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    [self addAnchorPointMark: self.layer0];
     [self addCenterMark: self.layer0];
 }
 
@@ -66,6 +85,8 @@
     self.layer0.frame = CGRectMake(0, 0, 100, 100);
     self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
     [self.view.layer addSublayer:self.layer0];
+    [self addCenterMark:self.layer0];
+    [self addAnchorPointMark: self.layer0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +112,29 @@
     
     [self.view addSubview:centerPoint];
     self.currentCenterMark = centerPoint;
+}
+
+- (void) addAnchorPointMark: (CALayer*)layer
+{
+    [self.currentAnchorPointMark removeFromSuperview];
+    self.currentAnchorPointMark = nil;
+    
+    CGFloat anchorPointX = layer.anchorPoint.x * layer.bounds.size.width;
+    CGFloat anchorPointY = layer.anchorPoint.y * layer.bounds.size.height;
+
+    CGPoint anchorPoint = CGPointMake(anchorPointX, anchorPointY);
+    CGPoint anchorPointConverted = [self.view.layer convertPoint: anchorPoint fromLayer: layer.superlayer];
+    NSLog(@"anchorPoint = %f, %f", anchorPointConverted.x, anchorPointConverted.y);
+    
+    CGRect centerRect = CGRectMake(0, 0, 4, 4);
+    
+    UIView *anchorPointView = [[UIView alloc] initWithFrame: centerRect];
+    anchorPointView.center = anchorPointConverted;
+    
+    anchorPointView.backgroundColor = [UIColor blueColor];
+    
+    [self.view addSubview:anchorPointView];
+    self.currentAnchorPointMark = anchorPointView;
 }
 
 @end
