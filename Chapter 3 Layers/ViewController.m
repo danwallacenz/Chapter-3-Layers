@@ -27,15 +27,27 @@
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexTwo;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexThree;
 @property (strong, nonatomic) CALayer *layerToInsertBelow;
-
+@property (strong, nonatomic) CALayer *layerToInsertAbove;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *insertBelowSublayer;
-
+@property (weak, nonatomic) IBOutlet UISegmentedControl *insertAboveSublayer;
 
 
 @end
 
 @implementation ViewController
+
+- (IBAction)insertLayerAbove:(UISwitch *)sender {
+    
+    if(sender.on){
+        self.layerToInsertAbove = [self makeLayerOfSize: 120.0 atPosition: 20.0 withColor:[UIColor greenColor]];
+        NSInteger layerIndex = self.insertAboveSublayer.selectedSegmentIndex;
+        [self.layerHierarchyContainer.layer insertSublayer: self.layerToInsertAbove
+                                                     above: self.layerHierarchyContainer.layer.sublayers[layerIndex]];
+    }else{
+        [self.layerToInsertAbove removeFromSuperlayer];
+    }
+}
 
 - (IBAction)insertLayerBelow:(UISwitch *)sender {
  

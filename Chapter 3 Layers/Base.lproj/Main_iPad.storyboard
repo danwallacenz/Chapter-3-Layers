@@ -34,7 +34,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJ3-7V-wUB">
-                                        <rect key="frame" x="699" y="20" width="265" height="639"/>
+                                        <rect key="frame" x="699" y="20" width="265" height="649"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhj-3c-8CY">
@@ -150,8 +150,14 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remove" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmW-qm-kbh">
+                                                <rect key="frame" x="5" y="614" width="64" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Insert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAP-Gj-nSG">
-                                                <rect key="frame" x="134" y="546" width="43" height="21"/>
+                                                <rect key="frame" x="134" y="614" width="43" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
@@ -186,6 +192,13 @@
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="insertSublayer:below:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-gh-Nj4">
                                                 <rect key="frame" x="5" y="512" width="172" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.8718065693" green="0.87015282849999998" blue="0.8793339416" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="insertSublayer:above:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZx-OS-8ZY">
+                                                <rect key="frame" x="5" y="580" width="172" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.8718065693" green="0.87015282849999998" blue="0.8793339416" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -235,6 +248,22 @@
                                                     <action selector="insertLayerBelow:" destination="BYZ-38-t0r" eventType="valueChanged" id="u65-YL-QrH"/>
                                                 </connections>
                                             </switch>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hya-hp-9HM">
+                                                <rect key="frame" x="77" y="609" width="51" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="insertLayerAbove:" destination="BYZ-38-t0r" eventType="valueChanged" id="emB-wd-M1o"/>
+                                                </connections>
+                                            </switch>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ssd-7i-qSu">
+                                                <rect key="frame" x="181" y="577" width="64" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="0"/>
+                                                    <segment title="1"/>
+                                                    <segment title="2"/>
+                                                </segments>
+                                            </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.94346897174631761" blue="0.83765141944940402" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -245,7 +274,7 @@
                                 <color key="backgroundColor" red="0.8793339416" green="0.82315678145832138" blue="0.79476954232918151" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cJ3-7V-wUB" secondAttribute="trailing" constant="20" id="0RV-h4-CqB"/>
-                                    <constraint firstAttribute="bottom" secondItem="cJ3-7V-wUB" secondAttribute="bottom" constant="20" id="5Sw-US-pW9"/>
+                                    <constraint firstAttribute="bottom" secondItem="cJ3-7V-wUB" secondAttribute="bottom" constant="10" id="5Sw-US-pW9"/>
                                     <constraint firstItem="gYv-lP-TT5" firstAttribute="leading" secondItem="v0Q-fW-7gq" secondAttribute="leading" constant="37" id="6ZD-U0-e6H"/>
                                     <constraint firstItem="cJ3-7V-wUB" firstAttribute="top" secondItem="v0Q-fW-7gq" secondAttribute="top" constant="20" id="Hol-0d-joU"/>
                                     <constraint firstItem="gYv-lP-TT5" firstAttribute="top" secondItem="v0Q-fW-7gq" secondAttribute="top" constant="353" id="p7m-m7-OaN"/>
@@ -265,6 +294,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="drawingView" destination="v0Q-fW-7gq" id="mdv-Nm-cN6"/>
+                        <outlet property="insertAboveSublayer" destination="ssd-7i-qSu" id="G2x-dO-u7E"/>
                         <outlet property="insertBelowSublayer" destination="D8J-SQ-TeI" id="EwV-zp-DKq"/>
                     </connections>
                 </viewController>
