@@ -32,10 +32,17 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *insertBelowSublayer;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *insertAboveSublayer;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *replaceSublayer;
 
 @end
 
 @implementation ViewController
+
+- (IBAction)replaceSublayer:(UISwitch *)sender {
+    NSInteger layerIndexToReplace = self.replaceSublayer.selectedSegmentIndex;
+    
+}
+
 
 - (IBAction)insertLayerAbove:(UISwitch *)sender {
     
@@ -232,6 +239,14 @@
     return layer;
 }
 
-
+-(UIColor *)randomColor
+{
+    CGFloat red = arc4random() % 256 / 255.0;
+    CGFloat green = arc4random() % 256 / 255.0;
+    CGFloat blue = arc4random() % 256 / 255.0;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    NSLog(@"%@", color);
+    return color;
+}
 
 @end
