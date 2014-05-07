@@ -41,9 +41,11 @@
 //    NSInteger layerIndexToReplace = self.replaceSublayer.selectedSegmentIndex;
     NSInteger layerIndexToReplace = sender.selectedSegmentIndex;
     
-    CALayer *replacementLayer = [self makeLayerOfSize: 120.0 atPosition: 20.0 withColor:[self randomColor]];
+    CALayer *layerToReplace = self.layerHierarchyContainer.layer.sublayers[layerIndexToReplace];
     
-    [self.layerHierarchyContainer.layer replaceSublayer: self.layerHierarchyContainer.layer.sublayers[layerIndexToReplace]with:replacementLayer];
+    CALayer *replacementLayer = [self makeLayerOfSize: layerToReplace.frame.size.height atPosition: layerToReplace.frame.origin.x withColor:[self randomColor]];
+    
+    [self.layerHierarchyContainer.layer replaceSublayer: layerToReplace with:replacementLayer];
     
     switch (layerIndexToReplace)
     {
@@ -60,7 +62,6 @@
             NSLog(@"ERROR - no layer to replace.");
             break;
     }
-    
 }
 
 - (IBAction)insertLayerAbove:(UISwitch *)sender {
