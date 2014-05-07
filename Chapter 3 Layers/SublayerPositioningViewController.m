@@ -38,7 +38,7 @@
     self.layer0.anchorPoint = CGPointMake(sender.value, self.anchorPointYSlider.value);
     self.anchorPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
-    [self addCenterMark: self.layer0];
+    [self addPositionMark: self.layer0];
 }
 
 - (IBAction)anchorPointY:(UISlider *)sender
@@ -46,7 +46,7 @@
     self.layer0.anchorPoint = CGPointMake( self.anchorPointXSlider.value, sender.value);
     self.anchorPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
-    [self addCenterMark: self.layer0];
+    [self addPositionMark: self.layer0];
 }
 
 - (IBAction)xPositionChanged:(UISlider *)sender
@@ -54,7 +54,7 @@
     self.layer0.position = CGPointMake(sender.value, self.yPositionSlider.value);
     self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
-    [self addCenterMark:self.layer0];
+    [self addPositionMark:self.layer0];
 }
 
 
@@ -63,7 +63,7 @@
     self.layer0.position = CGPointMake(self.xPositionSlider.value, sender.value);
     self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
-    [self addCenterMark: self.layer0];
+    [self addPositionMark: self.layer0];
 }
 
 
@@ -85,7 +85,7 @@
     self.layer0.frame = CGRectMake(0, 0, 100, 100);
     self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
     [self.view.layer addSublayer:self.layer0];
-    [self addCenterMark:self.layer0];
+    [self addPositionMark:self.layer0];
     [self addAnchorPointMark: self.layer0];
 }
 
@@ -95,18 +95,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) addCenterMark: (CALayer*)layer
+- (void) addPositionMark: (CALayer*)layer
 {
     [self.currentCenterMark removeFromSuperview];
     self.currentCenterMark = nil;
     
-    CGPoint center = [self.view.layer convertPoint: layer.position fromLayer: layer.superlayer];
-    NSLog(@"center = %f, %f", center.x, center.y);
+    CGPoint position = [self.view.layer convertPoint: layer.position fromLayer: layer.superlayer];
+    NSLog(@"position = %f, %f", position.x, position.y);
     
     CGRect centerRect = CGRectMake(0, 0, 4, 4);
     
     UIView *centerPoint = [[UIView alloc] initWithFrame: centerRect];
-    centerPoint.center = center;
+    centerPoint.center = position;
     
     centerPoint.backgroundColor = [UIColor redColor];
     
