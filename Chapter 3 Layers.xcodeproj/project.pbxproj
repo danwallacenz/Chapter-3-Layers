@@ -24,6 +24,7 @@
 		E014631619189A2E00E043A3 /* Chapter_3_LayersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */; };
 		E01463221918A16B00E043A3 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = E01463201918A16B00E043A3 /* Contents.json */; };
 		E01463231918A16B00E043A3 /* smileyiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = E01463211918A16B00E043A3 /* smileyiPhone.png */; };
+		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chapter_3_LayersTests.m; sourceTree = "<group>"; };
 		E01463201918A16B00E043A3 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		E01463211918A16B00E043A3 /* smileyiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smileyiPhone.png; sourceTree = "<group>"; };
+		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
+		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				E01462F719189A2D00E043A3 /* AppDelegate.m */,
 				E01462F919189A2D00E043A3 /* Main_iPhone.storyboard */,
 				E01462FC19189A2D00E043A3 /* Main_iPad.storyboard */,
+				E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */,
+				E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */,
 				E01462FF19189A2D00E043A3 /* ViewController.h */,
 				E014630019189A2D00E043A3 /* ViewController.m */,
 				E014631F1918A16B00E043A3 /* smiley.imageset */,
@@ -273,6 +278,7 @@
 				E014630119189A2D00E043A3 /* ViewController.m in Sources */,
 				E01462F819189A2D00E043A3 /* AppDelegate.m in Sources */,
 				E01462F419189A2D00E043A3 /* main.m in Sources */,
+				E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +493,7 @@
 				E014631B19189A2E00E043A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E014631C19189A2E00E043A3 /* Build configuration list for PBXNativeTarget "Chapter 3 LayersTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +502,7 @@
 				E014631E19189A2E00E043A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
