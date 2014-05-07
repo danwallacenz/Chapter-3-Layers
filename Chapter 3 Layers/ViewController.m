@@ -17,9 +17,9 @@
 // Manipulating the layer heirarchy
 @property (weak, nonatomic) UIView *layerHierarchyContainer;
 
-@property (strong, nonatomic) CALayer *blueLayer;
-@property (strong, nonatomic) CALayer *orangeLayer;
-@property (strong, nonatomic) CALayer *yellowLayer;
+@property (strong, nonatomic) CALayer *layer0;
+@property (strong, nonatomic) CALayer *layer1;
+@property (strong, nonatomic) CALayer *layer2;
 
 @property (strong, nonatomic) CALayer *layerToInsertAndRemove;
 @property (strong, nonatomic) CALayer *layerToInsertAndRemoveAtIndexZero;
@@ -32,17 +32,36 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *insertBelowSublayer;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *insertAboveSublayer;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *replaceSublayer;
-
 @end
 
 @implementation ViewController
 
-- (IBAction)replaceSublayer:(UISwitch *)sender {
-    NSInteger layerIndexToReplace = self.replaceSublayer.selectedSegmentIndex;
+- (IBAction)replaceSublayerWithRandomColoredLayer:(UISegmentedControl *)sender {
+    
+//    NSInteger layerIndexToReplace = self.replaceSublayer.selectedSegmentIndex;
+    NSInteger layerIndexToReplace = sender.selectedSegmentIndex;
+    
+    CALayer *replacementLayer = [self makeLayerOfSize: 120.0 atPosition: 20.0 withColor:[self randomColor]];
+    
+    [self.layerHierarchyContainer.layer replaceSublayer: self.layerHierarchyContainer.layer.sublayers[layerIndexToReplace]with:replacementLayer];
+    
+    switch (layerIndexToReplace)
+    {
+        case 0:
+            self.layer0 = replacementLayer;
+            break;
+        case 1:
+            self.layer1 = replacementLayer;
+            break;
+        case 2:
+            self.layer2 = replacementLayer;
+            break;
+        default:
+            NSLog(@"ERROR - no layer to replace.");
+            break;
+    }
     
 }
-
 
 - (IBAction)insertLayerAbove:(UISwitch *)sender {
     
@@ -117,7 +136,7 @@
             self.layerToInsertAndRemove = [self makeLayerToInsertAndRemove];
         }
         self.layerToInsertAndRemove = [self makeLayerToInsertAndRemove];
-        [self.yellowLayer addSublayer: self.layerToInsertAndRemove];
+        [self.layer2 addSublayer: self.layerToInsertAndRemove];
     }else{
         [self.layerToInsertAndRemove removeFromSuperlayer];
     }
@@ -160,20 +179,20 @@
     layerHierarchyContainer.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:layerHierarchyContainer];
     
-    self.blueLayer = [CALayer new];
-    self.blueLayer.frame = CGRectMake(10, 10, 100, 100);
-    self.blueLayer.backgroundColor = [[UIColor blueColor] CGColor];
-    [layerHierarchyContainer.layer addSublayer: self.blueLayer];
+    self.layer0 = [CALayer new];
+    self.layer0.frame = CGRectMake(10, 10, 100, 100);
+    self.layer0.backgroundColor = [[UIColor blueColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.layer0];
     
-    self.orangeLayer = [CALayer new];
-    self.orangeLayer.frame = CGRectMake(50, 50, 100, 100);
-    self.orangeLayer.backgroundColor = [[UIColor orangeColor] CGColor];
-    [layerHierarchyContainer.layer addSublayer: self.orangeLayer];
+    self.layer1 = [CALayer new];
+    self.layer1.frame = CGRectMake(50, 50, 100, 100);
+    self.layer1.backgroundColor = [[UIColor orangeColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.layer1];
     
-    self.yellowLayer = [CALayer new];
-    self.yellowLayer.frame = CGRectMake(100, 100,100, 100);
-    self.yellowLayer.backgroundColor = [[UIColor yellowColor] CGColor];
-    [layerHierarchyContainer.layer addSublayer: self.yellowLayer];
+    self.layer2 = [CALayer new];
+    self.layer2.frame = CGRectMake(100, 100,100, 100);
+    self.layer2.backgroundColor = [[UIColor yellowColor] CGColor];
+    [layerHierarchyContainer.layer addSublayer: self.layer2];
     
     self.layerHierarchyContainer = layerHierarchyContainer;
 }
