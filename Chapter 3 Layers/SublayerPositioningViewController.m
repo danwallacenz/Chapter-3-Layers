@@ -38,6 +38,19 @@
 
 @implementation SublayerPositioningViewController
 
+
+- (IBAction)scrollToRect:(UIButton *)sender {
+    self.cAScrollLayer.masksToBounds = NO;
+    CGRect newRect = self.cAScrollLayer.frame;
+    newRect.origin = CGPointMake(newRect.origin.x + 20.0 , newRect.origin.y + 20.0);
+    
+    newRect = [self.cAScrollLayer convertRect:newRect fromLayer: self.view.layer];
+    
+    [self.cAScrollLayer scrollToRect: newRect];
+    self.cAScrollLayer.masksToBounds = YES;
+}
+
+
 - (IBAction)scrollToPointX:(UISlider *)sender
 {
     [self.cAScrollLayer scrollToPoint: CGPointMake(sender.value, self.cAScrollLayer.bounds.origin.y)];
