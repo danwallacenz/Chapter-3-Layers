@@ -119,7 +119,10 @@
     
     CALayer *imageLayer = [CALayer new];
 //    imageLayer.bounds = CGRectMake(0, 0, 100, 100);
-    imageLayer.frame = cAScrollLayer.bounds;
+    
+//    imageLayer.frame = cAScrollLayer.bounds;
+    imageLayer.frame = CGRectMake(0, 0, cAScrollLayer.bounds.size.width * 2.0, cAScrollLayer.bounds.size.height * 2.0);
+    
     imageLayer.contents = (id)monaLisa.CGImage;
     [cAScrollLayer addSublayer:imageLayer];
 
