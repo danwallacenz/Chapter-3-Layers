@@ -118,18 +118,15 @@
     cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
     
     CALayer *imageLayer = [CALayer new];
-    CGRect r = cAScrollLayer.frame;
-    r.origin = cAScrollLayer.frame.origin;
-    r.size = monaLisa.size;
-    imageLayer.frame = r;
+//    imageLayer.bounds = CGRectMake(0, 0, 100, 100);
+    imageLayer.frame = cAScrollLayer.bounds;
     imageLayer.contents = (id)monaLisa.CGImage;
-//    [cAScrollLayer addSublayer:imageLayer];
-    
+    [cAScrollLayer addSublayer:imageLayer];
 
-//    cAScrollLayer.contents = monaLisa;
+//    cAScrollLayer.contents = (id)monaLisa.CGImage;
     [self.view.layer addSublayer: cAScrollLayer];
+//    [self.view.layer addSublayer:imageLayer];
 
-    cAScrollLayer.contents = (id)monaLisa.CGImage;
 }
 
 - (void)didReceiveMemoryWarning
