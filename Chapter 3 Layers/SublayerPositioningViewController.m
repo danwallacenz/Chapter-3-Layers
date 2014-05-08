@@ -28,10 +28,27 @@
 @property (strong, nonatomic) UIView *currentCenterMark;
 @property (strong, nonatomic) UIView *currentAnchorPointMark;
 
+@property (weak, nonatomic) CAScrollLayer *cAScrollLayer;
+@property (weak, nonatomic) CALayer *imageLayer;
+
+@property (weak, nonatomic) IBOutlet UILabel *scrollToPointXLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scrollToPointYLabel;
+
 @end
 
 @implementation SublayerPositioningViewController
 
+- (IBAction)scrollToPointX:(UISlider *)sender
+{
+    [self.cAScrollLayer scrollToPoint: CGPointMake(sender.value, self.cAScrollLayer.bounds.origin.y)];
+     self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+}
+
+- (IBAction)scrollToPointY:(UISlider *)sender
+{
+    [self.cAScrollLayer scrollToPoint: CGPointMake( self.cAScrollLayer.bounds.origin.x, sender.value )];
+    self.scrollToPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+}
 
 - (IBAction)anchorPointXChanged:(UISlider *)sender
 {
@@ -99,38 +116,34 @@
     // bounds and position is better for CALayers.
     self.layer0.bounds = CGRectMake(0, 0, 100, 100);
     self.layer0.position = CGPointMake(50, 50);
-    
     self.layer0.anchorPoint = CGPointMake(0.5, 0.5);
-    
     self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
     [self.view.layer addSublayer:self.layer0];
     [self addPositionMark:self.layer0];
     [self addAnchorPointMark: self.layer0];
     
-    // mona lisa CaScrollLAyer
+    self.cAScrollLayer = [self createMonaLisaScrollLayer];
+    [self.view.layer addSublayer:  self.cAScrollLayer];
+}
+
+- (CAScrollLayer *) createMonaLisaScrollLayer
+{
     UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
     
     CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
-//    cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width/2.0, monaLisa.size.height/2.0));
     cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
-
     cAScrollLayer.position =  CGPointMake( self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
     cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
     
     CALayer *imageLayer = [CALayer new];
-//    imageLayer.bounds = CGRectMake(0, 0, 100, 100);
-    
-//    imageLayer.frame = cAScrollLayer.bounds;
     imageLayer.frame = CGRectMake(0, 0, cAScrollLayer.bounds.size.width * 2.0, cAScrollLayer.bounds.size.height * 2.0);
-    
     imageLayer.contents = (id)monaLisa.CGImage;
     [cAScrollLayer addSublayer:imageLayer];
-
-//    cAScrollLayer.contents = (id)monaLisa.CGImage;
-    [self.view.layer addSublayer: cAScrollLayer];
-//    [self.view.layer addSublayer:imageLayer];
-
+    
+    return cAScrollLayer;
+//    [self.view.layer addSublayer: cAScrollLayer];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
