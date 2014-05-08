@@ -167,7 +167,7 @@
     [super viewDidAppear:animated];
     
     
-    CALayer *containerLayer = self.layerHierarchyContainer.layer;
+//    CALayer *containerLayer = self.layerHierarchyContainer.layer;
     NSLog(@"container origin = %f %f", self.layerHierarchyContainer.frame.origin.x, self.layerHierarchyContainer.frame.origin.y);
     
     

@@ -39,6 +39,9 @@
     self.anchorPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark: self.layer0];
+    NSLog(@" ");
+    NSLog(@"self.layer0.anchorPoint=%f %f", self.layer0.anchorPoint.x, self.layer0.anchorPoint.y);
+    NSLog(@"self.layer0.position=%f %f", self.layer0.position.x, self.layer0.position.y);
 }
 
 - (IBAction)anchorPointY:(UISlider *)sender
@@ -47,6 +50,9 @@
     self.anchorPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark: self.layer0];
+    NSLog(@" ");
+    NSLog(@"self.layer0.anchorPoint=%f %f", self.layer0.anchorPoint.x, self.layer0.anchorPoint.y);
+    NSLog(@"self.layer0.position=%f %f", self.layer0.position.x, self.layer0.position.y);
 }
 
 - (IBAction)xPositionChanged:(UISlider *)sender
@@ -55,6 +61,9 @@
     self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark:self.layer0];
+    NSLog(@" ");
+    NSLog(@"self.layer0.anchorPoint=%f %f", self.layer0.anchorPoint.x, self.layer0.anchorPoint.y);
+    NSLog(@"self.layer0.position=%f %f", self.layer0.position.x, self.layer0.position.y);
 }
 
 
@@ -64,6 +73,9 @@
     self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark: self.layer0];
+    NSLog(@" ");
+    NSLog(@"self.layer0.anchorPoint=%f %f", self.layer0.anchorPoint.x, self.layer0.anchorPoint.y);
+    NSLog(@"self.layer0.position=%f %f", self.layer0.position.x, self.layer0.position.y);
 }
 
 
@@ -82,7 +94,13 @@
     // Do any additional setup after loading the view.
     
     self.layer0 = [CALayer new];
-    self.layer0.frame = CGRectMake(0, 0, 100, 100);
+//    self.layer0.frame = CGRectMake(0, 0, 100, 100);
+    // bounds and position is better for CALayers.
+    self.layer0.bounds = CGRectMake(0, 0, 100, 100);
+    self.layer0.position = CGPointMake(50, 50);
+    
+    self.layer0.anchorPoint = CGPointMake(0.5, 0.5);
+    
     self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
     [self.view.layer addSublayer:self.layer0];
     [self addPositionMark:self.layer0];
@@ -114,6 +132,8 @@
     self.currentCenterMark = centerPoint;
 }
 
+
+# warning TODO Check this
 - (void) addAnchorPointMark: (CALayer*)layer
 {
     [self.currentAnchorPointMark removeFromSuperview];
