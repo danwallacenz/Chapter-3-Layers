@@ -93,6 +93,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // black rectangle
     self.layer0 = [CALayer new];
 //    self.layer0.frame = CGRectMake(0, 0, 100, 100);
     // bounds and position is better for CALayers.
@@ -105,6 +106,30 @@
     [self.view.layer addSublayer:self.layer0];
     [self addPositionMark:self.layer0];
     [self addAnchorPointMark: self.layer0];
+    
+    // mona lisa CaScrollLAyer
+    UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
+    
+    CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
+//    cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width/2.0, monaLisa.size.height/2.0));
+    cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
+
+    cAScrollLayer.position =  CGPointMake( self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
+    cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
+    
+    CALayer *imageLayer = [CALayer new];
+    CGRect r = cAScrollLayer.frame;
+    r.origin = cAScrollLayer.frame.origin;
+    r.size = monaLisa.size;
+    imageLayer.frame = r;
+    imageLayer.contents = (id)monaLisa.CGImage;
+//    [cAScrollLayer addSublayer:imageLayer];
+    
+
+//    cAScrollLayer.contents = monaLisa;
+    [self.view.layer addSublayer: cAScrollLayer];
+
+    cAScrollLayer.contents = (id)monaLisa.CGImage;
 }
 
 - (void)didReceiveMemoryWarning
