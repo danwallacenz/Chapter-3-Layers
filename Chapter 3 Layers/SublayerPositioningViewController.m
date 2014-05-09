@@ -155,7 +155,10 @@
     
     CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
     cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
-    cAScrollLayer.position =  CGPointMake( self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
+//    cAScrollLayer.position =  CGPointMake( self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
+    cAScrollLayer.position =  CGPointMake( 300, 300);
+    cAScrollLayer.anchorPoint = CGPointMake(0,0); // top left
+    
     cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
     
     CALayer *imageLayer = [CALayer new];
