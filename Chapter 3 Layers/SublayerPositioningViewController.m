@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectLabel;
 @property float scrollToRectOriginX;
 @property float scrollToRectOriginY;
+@property (weak, nonatomic) IBOutlet UILabel *scrollToRectXSliderValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scrollToRectYSliderValueLabel;
 
 @end
 
@@ -57,24 +59,25 @@
 - (IBAction)scrollRectToOriginX:(UISlider *)sender
 {
     self.scrollToRectOriginX = sender.value;
+    self.scrollToRectXSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginX ];
 }
 
 - (IBAction)scrollRectToOriginY:(UISlider *)sender
 {
     self.scrollToRectOriginY = sender.value;
+        self.scrollToRectYSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginY ];
 }
 
 - (IBAction)scrollToRect:(UIButton *)sender
 {
-//    self.cAScrollLayer.masksToBounds = NO;
     CGRect newRect = self.cAScrollLayer.frame;
 
-    newRect.origin = CGPointMake(newRect.origin.x + self.scrollToRectOriginX , newRect.origin.y + self.scrollToRectOriginY);
+//    newRect.origin = CGPointMake(newRect.origin.x + self.scrollToRectOriginX , newRect.origin.y + self.scrollToRectOriginY);
+    newRect.origin = CGPointMake(self.scrollToRectOriginX , self.scrollToRectOriginY);
     
-    newRect = [self.cAScrollLayer convertRect:newRect fromLayer: self.view.layer];
+//    newRect = [self.cAScrollLayer convertRect:newRect fromLayer: self.view.layer];
     
     [self.cAScrollLayer scrollToRect: newRect];
-//    self.cAScrollLayer.masksToBounds = YES;
     
     self.scrollToRectLabel.text
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
@@ -180,7 +183,7 @@
     CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
     cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
 //    cAScrollLayer.position =  CGPointMake( self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
-    cAScrollLayer.position =  CGPointMake( 300, 300);
+    cAScrollLayer.position =  CGPointMake( 300, 200);
     cAScrollLayer.anchorPoint = CGPointMake(0,0); // top left
     
     cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];

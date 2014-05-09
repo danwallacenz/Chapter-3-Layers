@@ -69,38 +69,29 @@
     CGMutablePathRef p = CGPathCreateMutable();
     CGFloat lineWidth = 1.0;
     
-    // draw horizontal lines.
+    // height and width are flipped in landscape
+    float height = 0;
+    float width = 0;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
-    for (int y=0; y < self.bounds.size.height; y += 100) {
-        CGPathAddRect(p, nil, CGRectIntegral(CGRectMake(0.0, y, self.bounds.size.width, lineWidth)));
+    if(orientation == UIInterfaceOrientationPortrait){
+        height = self.bounds.size.height;
+        width = self.bounds.size.width;
+    }else{
+        height = self.bounds.size.width;
+        width = self.bounds.size.height;
     }
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 100.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 200.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 300.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 300.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 400.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 500.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 600.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 700.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 800.0, self.bounds.size.width, lineWidth));
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 900.0, self.bounds.size.width, lineWidth));
+    
+    // draw horizontal lines.
+    for (int y=0; y < self.bounds.size.height; y += 100) {
+        CGPathAddRect(p, nil, CGRectIntegral(CGRectMake(0.0, y, width, lineWidth)));
+    }
     
     // draw vertical lines
     for (int x=0; x < self.bounds.size.width; x += 100) {
-        CGPathAddRect(p, nil, CGRectIntegral( CGRectMake(x, 0.0, lineWidth, self.bounds.size.height)));
+        CGPathAddRect(p, nil, CGRectIntegral( CGRectMake(x, 0.0, lineWidth, height)));
     }
-    
-//    CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(100.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(200.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(300.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(400.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(500.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(600.0, 0.0, lineWidth, self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(700.0, 0.0, lineWidth,self.bounds.size.height));
-//    CGPathAddRect(p, nil, CGRectMake(800.0, 0.0, lineWidth,self.bounds.size.height));
-    
+
     grid.path = p;
     CGPathRelease(p);
     
