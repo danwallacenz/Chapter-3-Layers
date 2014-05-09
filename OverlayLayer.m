@@ -26,16 +26,17 @@
     pointLayer.lineWidth = 2.0;
     pointLayer.strokeColor = [UIColor redColor].CGColor;
 //    pointLayer.bounds = self.bounds;
-    pointLayer.bounds = CGRectMake(0, 0, 10, 10);
+    pointLayer.bounds = CGRectMake(0, 0, 5, 5);
 //    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     pointLayer.position = point;
-    pointLayer.backgroundColor = [UIColor orangeColor].CGColor;
+//    pointLayer.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.5].CGColor;
     
     
     CGMutablePathRef path = CGPathCreateMutable();
 //    CGPathAddEllipseInRect(path, nil, CGRectMake(point.x, point.y, 60, 60));
-    CGPathAddEllipseInRect(path, nil, CGRectMake(0, 0, 10, 10));
-//    CGPathAddEllipseInRect(path, nil, self.bounds);
+//    CGPathAddEllipseInRect(path, nil, CGRectMake(0, 0, 10, 10));
+    CGPathAddEllipseInRect(path, nil, pointLayer.bounds);
+    pointLayer.path = path;
     CGPathRelease(path);
     
 //    pointLayer.bounds = self.bounds;
