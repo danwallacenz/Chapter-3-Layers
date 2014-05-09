@@ -31,7 +31,7 @@
 
 @property (weak, nonatomic) CAScrollLayer *cAScrollLayer;
 @property (weak, nonatomic) CALayer *imageLayer;
-@property CGSize imageSize;
+//@property CGSize imageSize;
 
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointYLabel;
@@ -89,13 +89,15 @@
     [self.overlayLayer drawPoint: self.cAScrollLayer.position];
     
     
-    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
+
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
     [self.overlayLayer drawPoint: boundsOrigin];
     
     CGPoint scrollLayerPosition = self.cAScrollLayer.position;
 
-    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + self.imageSize.width * 2.0, boundsOrigin.y );
+//    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + self.imageSize.width * 2.0, boundsOrigin.y );
+    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size; // UIImageView
+    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
 
     [self.overlayLayer drawPoint: boundsTopRight];
     
@@ -197,7 +199,6 @@
 - (CAScrollLayer *) createMonaLisaScrollLayer
 {
     UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
-    self.imageSize = monaLisa.size;
     
     CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
     cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
