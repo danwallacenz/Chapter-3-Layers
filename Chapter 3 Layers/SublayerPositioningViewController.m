@@ -35,6 +35,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointYLabel;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *scrollToRectLabel;
+@property float scrollToRectOriginX;
+@property float scrollToRectOriginY;
+
 @end
 
 @implementation SublayerPositioningViewController
@@ -44,17 +49,36 @@
     self.overlayLayer.hidden = !self.overlayLayer.hidden;
 }
 
-- (IBAction)scrollToRect:(UIButton *)sender {
-    self.cAScrollLayer.masksToBounds = NO;
+- (IBAction)scrollLayerMasksToBoundsToggle:(id)sender
+{
+    self.cAScrollLayer.masksToBounds = !self.cAScrollLayer.masksToBounds;
+}
+
+- (IBAction)scrollRectToOriginX:(UISlider *)sender
+{
+    self.scrollToRectOriginX = sender.value;
+}
+
+- (IBAction)scrollRectToOriginY:(UISlider *)sender
+{
+    self.scrollToRectOriginY = sender.value;
+}
+
+- (IBAction)scrollToRect:(UIButton *)sender
+{
+//    self.cAScrollLayer.masksToBounds = NO;
     CGRect newRect = self.cAScrollLayer.frame;
-    newRect.origin = CGPointMake(newRect.origin.x + 20.0 , newRect.origin.y + 20.0);
+
+    newRect.origin = CGPointMake(newRect.origin.x + self.scrollToRectOriginX , newRect.origin.y + self.scrollToRectOriginY);
     
     newRect = [self.cAScrollLayer convertRect:newRect fromLayer: self.view.layer];
     
     [self.cAScrollLayer scrollToRect: newRect];
-    self.cAScrollLayer.masksToBounds = YES;
+//    self.cAScrollLayer.masksToBounds = YES;
+    
+    self.scrollToRectLabel.text
+        = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
 }
-
 
 - (IBAction)scrollToPointX:(UISlider *)sender
 {
@@ -166,9 +190,10 @@
     imageLayer.contents = (id)monaLisa.CGImage;
     [cAScrollLayer addSublayer:imageLayer];
     cAScrollLayer.opaque = YES;
+    cAScrollLayer.borderColor = [UIColor redColor].CGColor;
+    cAScrollLayer.borderWidth = 2.0;
     
     return cAScrollLayer;
-//    [self.view.layer addSublayer: cAScrollLayer];
 }
 
 
