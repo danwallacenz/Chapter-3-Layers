@@ -32,15 +32,6 @@
     self.grid.strokeColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.5].CGColor;
     
     CGMutablePathRef p = CGPathCreateMutable();
-//    CGPathAddEllipseInRect(p, nil, CGRectInset(self.bounds,3,3)); // ?????
-//    CGPathAddEllipseInRect(p, nil, self.bounds); // ?????
-    
-//    CGContextMoveToPoint(p, 0.0, 0.0);
-//    void CGPathAddRect (
-//                        CGMutablePathRef path,
-//                        const CGAffineTransform *m,
-//                        CGRect rect
-//                        )
     CGFloat lineWidth = 1.0;
     
     // draw vertical lines.
@@ -64,11 +55,9 @@
     CGPathAddRect(p, nil, CGRectMake(700.0, 0.0, lineWidth,self.bounds.size.height));
     
     self.grid.path = p;
+    CGPathRelease(p);
+    
     [self addSublayer: self.grid];
-    
-//    self.bounds = [UIScreen mainScreen].bounds;
-//    self.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    
 }
 
 @end

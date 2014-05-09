@@ -39,6 +39,10 @@
 
 @implementation SublayerPositioningViewController
 
+- (IBAction)showHideGrid:(id)sender
+{
+    self.overlayLayer.hidden = !self.overlayLayer.hidden;
+}
 
 - (IBAction)scrollToRect:(UIButton *)sender {
     self.cAScrollLayer.masksToBounds = NO;
@@ -142,6 +146,7 @@
     self.overlayLayer = [OverlayLayer new];
     [self.view.layer addSublayer:  self.overlayLayer];
     [self.overlayLayer setNeedsDisplay];
+    self.overlayLayer.hidden = YES;
 }
 
 - (CAScrollLayer *) createMonaLisaScrollLayer
