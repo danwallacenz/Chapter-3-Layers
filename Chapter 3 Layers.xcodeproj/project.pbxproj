@@ -24,6 +24,7 @@
 		E014631619189A2E00E043A3 /* Chapter_3_LayersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */; };
 		E01463221918A16B00E043A3 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = E01463201918A16B00E043A3 /* Contents.json */; };
 		E01463231918A16B00E043A3 /* smileyiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = E01463211918A16B00E043A3 /* smileyiPhone.png */; };
+		E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0353E98191C6AE30075FDB8 /* OverlayLayer.m */; };
 		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
 		E0F80EB7191B262F0040F83F /* 396px-Mona_Lisa.png in Resources */ = {isa = PBXBuildFile; fileRef = E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,8 @@
 		E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chapter_3_LayersTests.m; sourceTree = "<group>"; };
 		E01463201918A16B00E043A3 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		E01463211918A16B00E043A3 /* smileyiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smileyiPhone.png; sourceTree = "<group>"; };
+		E0353E97191C6AE30075FDB8 /* OverlayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayLayer.h; sourceTree = "<group>"; };
+		E0353E98191C6AE30075FDB8 /* OverlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLayer.m; sourceTree = "<group>"; };
 		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
 		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
 		E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "396px-Mona_Lisa.png"; path = "Chapter 3 Layers/396px-Mona_Lisa.png"; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		E01462DB19189A2D00E043A3 = {
 			isa = PBXGroup;
 			children = (
+				E0353E9A191C6AF10075FDB8 /* layers */,
 				E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */,
 				E01462ED19189A2D00E043A3 /* Chapter 3 Layers */,
 				E014630F19189A2E00E043A3 /* Chapter 3 LayersTests */,
@@ -176,6 +180,15 @@
 			);
 			name = smiley.imageset;
 			path = "../../iOS7-book-examples/Programming-iOS-Book-Examples-master/bk2ch03p095layerHierarchy/ch16p445layerHierarchy/Images.xcassets/smiley.imageset";
+			sourceTree = "<group>";
+		};
+		E0353E9A191C6AF10075FDB8 /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				E0353E98191C6AE30075FDB8 /* OverlayLayer.m */,
+				E0353E97191C6AE30075FDB8 /* OverlayLayer.h */,
+			);
+			name = layers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */,
 				E014630119189A2D00E043A3 /* ViewController.m in Sources */,
 				E01462F819189A2D00E043A3 /* AppDelegate.m in Sources */,
 				E01462F419189A2D00E043A3 /* main.m in Sources */,

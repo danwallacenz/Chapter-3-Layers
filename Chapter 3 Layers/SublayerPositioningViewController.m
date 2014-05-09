@@ -7,11 +7,12 @@
 //
 
 #import "SublayerPositioningViewController.h"
+#import "OverlayLayer.h"
 
 @interface SublayerPositioningViewController ()
 
 @property (strong, nonatomic) CALayer *layer0;
-
+@property  (strong, nonatomic) OverlayLayer *overlayLayer;
 
 @property (weak, nonatomic) IBOutlet UISlider *xPositionSlider;
 @property (weak, nonatomic) IBOutlet UILabel *positionXLabel;
@@ -137,6 +138,9 @@
     
     self.cAScrollLayer = [self createMonaLisaScrollLayer];
     [self.view.layer addSublayer:  self.cAScrollLayer];
+    
+    self.overlayLayer = [OverlayLayer new];
+    [self.view.layer addSublayer:  self.overlayLayer];
 }
 
 - (CAScrollLayer *) createMonaLisaScrollLayer
