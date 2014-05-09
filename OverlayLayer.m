@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) CAShapeLayer *grid;
 @property (strong, nonatomic) CATextLayer *text;
+@property (strong, nonatomic) NSMutableArray *points;
 
 @end
 
@@ -24,12 +25,26 @@
     pointLayer.fillColor = [UIColor redColor].CGColor;
     pointLayer.lineWidth = 2.0;
     pointLayer.strokeColor = [UIColor redColor].CGColor;
-    pointLayer.bounds = self.bounds;
-    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+//    pointLayer.bounds = self.bounds;
+    pointLayer.bounds = CGRectMake(0, 0, 10, 10);
+//    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    pointLayer.position = point;
+    pointLayer.backgroundColor = [UIColor orangeColor].CGColor;
+    
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddEllipseInRect(path, nil, CGRectMake(point.x, point.y, 60, 60));
+//    CGPathAddEllipseInRect(path, nil, CGRectMake(point.x, point.y, 60, 60));
+    CGPathAddEllipseInRect(path, nil, CGRectMake(0, 0, 10, 10));
+//    CGPathAddEllipseInRect(path, nil, self.bounds);
     CGPathRelease(path);
+    
+//    pointLayer.bounds = self.bounds;
+//    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    
+    if(!self.points){
+        self.points = [[NSMutableArray alloc]init];
+    }
+    [self.points addObject:pointLayer];
     
     [self addSublayer:pointLayer];
     [self setNeedsDisplay];
@@ -50,6 +65,10 @@
     
     
     [self createCoordinateLabels];
+    
+    for (CALayer *point in self.points) {
+        [self addSublayer:point];
+    }
 }
 
 - (void) createCoordinateLabels
