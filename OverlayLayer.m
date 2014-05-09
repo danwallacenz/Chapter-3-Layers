@@ -29,20 +29,32 @@
     self.grid = [self createGrid];
     [self addSublayer: self.grid];
     
-    self.text = [self createText];
-    [self addSublayer: self.text];
+    
+    [self createCoordinateLabels];
 }
 
--(CATextLayer *)createText
+- (void) createCoordinateLabels
+{
+    for (int x=0; x < self.bounds.size.width; x += 100) {
+        for (int y=0 ; y < self.bounds.size.height; y +=100) {
+            [self addSublayer:[self createTextAtPoint: CGPointMake(x, y)]];
+        }
+    }
+}
+
+
+-(CATextLayer *)createTextAtPoint: (CGPoint)point
 {
     CATextLayer *text = [CATextLayer new];
     text.contentsScale = [UIScreen mainScreen].scale;
-    text.string = @"(100,100)";
+//    text.string = @"(100,100)";
+    
+    text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
     text.bounds = CGRectMake(0, 0, 100, 30);
-    text.position = CGPointMake(100.0, 100.0);
+    text.position = point;
     text.alignmentMode = kCAAlignmentCenter;
     text.foregroundColor = [[UIColor grayColor] colorWithAlphaComponent: 0.5].CGColor;
-    text.fontSize = 10.0;
+    text.fontSize = 8.0;
     return text;
 }
 
@@ -58,7 +70,7 @@
     CGMutablePathRef p = CGPathCreateMutable();
     CGFloat lineWidth = 1.0;
     
-    // draw vertical lines.
+    // draw horizontal lines.
     CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 100.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 200.0, self.bounds.size.width, lineWidth));
@@ -69,8 +81,9 @@
     CGPathAddRect(p, nil, CGRectMake(0.0, 600.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 700.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 800.0, self.bounds.size.width, lineWidth));
+    CGPathAddRect(p, nil, CGRectMake(0.0, 900.0, self.bounds.size.width, lineWidth));
     
-    // draw horizontal lines
+    // draw vertical lines
     CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, lineWidth, self.bounds.size.height));
     CGPathAddRect(p, nil, CGRectMake(100.0, 0.0, lineWidth, self.bounds.size.height));
     CGPathAddRect(p, nil, CGRectMake(200.0, 0.0, lineWidth, self.bounds.size.height));
@@ -79,6 +92,7 @@
     CGPathAddRect(p, nil, CGRectMake(500.0, 0.0, lineWidth, self.bounds.size.height));
     CGPathAddRect(p, nil, CGRectMake(600.0, 0.0, lineWidth, self.bounds.size.height));
     CGPathAddRect(p, nil, CGRectMake(700.0, 0.0, lineWidth,self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(800.0, 0.0, lineWidth,self.bounds.size.height));
     
     grid.path = p;
     CGPathRelease(p);
