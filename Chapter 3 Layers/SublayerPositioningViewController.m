@@ -157,6 +157,7 @@
     imageLayer.frame = CGRectMake(0, 0, cAScrollLayer.bounds.size.width * 2.0, cAScrollLayer.bounds.size.height * 2.0);
     imageLayer.contents = (id)monaLisa.CGImage;
     [cAScrollLayer addSublayer:imageLayer];
+    cAScrollLayer.opaque = YES;
     
     return cAScrollLayer;
 //    [self.view.layer addSublayer: cAScrollLayer];

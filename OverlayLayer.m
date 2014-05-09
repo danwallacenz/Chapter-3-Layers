@@ -42,6 +42,8 @@
 //                        CGRect rect
 //                        )
     CGFloat lineWidth = 1.0;
+    
+    // draw vertical lines.
     CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 100.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 200.0, self.bounds.size.width, lineWidth));
@@ -51,6 +53,15 @@
     CGPathAddRect(p, nil, CGRectMake(0.0, 500.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 600.0, self.bounds.size.width, lineWidth));
     CGPathAddRect(p, nil, CGRectMake(0.0, 700.0, self.bounds.size.width, lineWidth));
+    // draw horizontal lines
+    CGPathAddRect(p, nil, CGRectMake(0.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(100.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(200.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(300.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(400.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(500.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(600.0, 0.0, lineWidth, self.bounds.size.height));
+    CGPathAddRect(p, nil, CGRectMake(700.0, 0.0, lineWidth,self.bounds.size.height));
     
     self.grid.path = p;
     [self addSublayer: self.grid];
