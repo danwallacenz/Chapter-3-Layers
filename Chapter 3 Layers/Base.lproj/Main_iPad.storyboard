@@ -585,13 +585,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.70663207120000004" green="0.74729128649999998" blue="0.34306569339999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlq-P6-ywG">
-                                <rect key="frame" x="513" y="683" width="247" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.10986707535854923" blue="0.18903616743551166" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.75046694617457865" green="0.82049186862244894" blue="0.71624893718917482" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -603,7 +596,6 @@
                         <outlet property="anchorPointXSlider" destination="0KN-5d-PFg" id="esc-mW-GxW"/>
                         <outlet property="anchorPointYLabel" destination="hpH-PT-PV8" id="mCm-eB-fW1"/>
                         <outlet property="anchorPointYSlider" destination="B87-zP-URe" id="c53-eg-kiX"/>
-                        <outlet property="cAScrollLayerBoundsLabel" destination="nlq-P6-ywG" id="ALI-lq-A7h"/>
                         <outlet property="positionXLabel" destination="sNb-kn-SKP" id="dFj-sn-07f"/>
                         <outlet property="positionYLabel" destination="pX7-hL-kaC" id="Frr-RE-Rk5"/>
                         <outlet property="scrollToPointXLabel" destination="16r-rx-14K" id="GAn-M4-ErR"/>

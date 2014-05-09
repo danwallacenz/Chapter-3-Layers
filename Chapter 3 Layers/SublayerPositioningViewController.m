@@ -31,6 +31,7 @@
 
 @property (weak, nonatomic) CAScrollLayer *cAScrollLayer;
 @property (weak, nonatomic) CALayer *imageLayer;
+@property CGSize imageSize;
 
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointYLabel;
@@ -42,7 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectXSliderValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectYSliderValueLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *cAScrollLayerBoundsLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *cAScrollLayerBoundsLabel;
 
 
 @end
@@ -88,19 +89,16 @@
     [self.overlayLayer drawPoint: self.cAScrollLayer.position];
     
     
-//    CGSize imageSize = ((UIImage *)self.cAScrollLayer.contents).size;
+    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
-    
     [self.overlayLayer drawPoint: boundsOrigin];
-//    [self.overlayLayer drawPoint: ((UIImage *)self.cAScrollLayer.contents).size;
+    
+    CGPoint scrollLayerPosition = self.cAScrollLayer.position;
 
+    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + self.imageSize.width * 2.0, boundsOrigin.y );
+
+    [self.overlayLayer drawPoint: boundsTopRight];
     
-//    CGPoint convertedNewRectOrigin = [self.overlayLayer convertPoint: newRect.origin fromLayer: self.cAScrollLayer];
-//    [self.overlayLayer drawPoint: convertedNewRectOrigin];
-    
-//    [self.overlayLayer drawPoint: newRect.origin];
-    
-    self.cAScrollLayerBoundsLabel.text = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", self.self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.bounds.origin.y, self.cAScrollLayer.bounds.size.width, self.cAScrollLayer.bounds.size.height];
 }
 
 - (IBAction)scrollToPointX:(UISlider *)sender
@@ -199,6 +197,7 @@
 - (CAScrollLayer *) createMonaLisaScrollLayer
 {
     UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
+    self.imageSize = monaLisa.size;
     
     CAScrollLayer *cAScrollLayer = [CAScrollLayer new];
     cAScrollLayer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width, monaLisa.size.height));
