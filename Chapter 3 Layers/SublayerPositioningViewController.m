@@ -141,6 +141,7 @@
     
     self.overlayLayer = [OverlayLayer new];
     [self.view.layer addSublayer:  self.overlayLayer];
+    [self.overlayLayer setNeedsDisplay];
 }
 
 - (CAScrollLayer *) createMonaLisaScrollLayer
