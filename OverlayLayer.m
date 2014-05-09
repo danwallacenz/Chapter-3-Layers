@@ -13,6 +13,7 @@
 @property (strong, nonatomic) CAShapeLayer *grid;
 @property (strong, nonatomic) CATextLayer *text;
 @property (strong, nonatomic) NSMutableArray *points;
+@property BOOL labelsDrawn;
 
 @end
 
@@ -25,23 +26,14 @@
     pointLayer.fillColor = [UIColor redColor].CGColor;
     pointLayer.lineWidth = 2.0;
     pointLayer.strokeColor = [UIColor redColor].CGColor;
-//    pointLayer.bounds = self.bounds;
     pointLayer.bounds = CGRectMake(0, 0, 5, 5);
-//    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     pointLayer.position = point;
-//    pointLayer.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.5].CGColor;
-    
     
     CGMutablePathRef path = CGPathCreateMutable();
-//    CGPathAddEllipseInRect(path, nil, CGRectMake(point.x, point.y, 60, 60));
-//    CGPathAddEllipseInRect(path, nil, CGRectMake(0, 0, 10, 10));
     CGPathAddEllipseInRect(path, nil, pointLayer.bounds);
     pointLayer.path = path;
     CGPathRelease(path);
-    
-//    pointLayer.bounds = self.bounds;
-//    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    
+
     if(!self.points){
         self.points = [[NSMutableArray alloc]init];
     }
@@ -54,18 +46,24 @@
 
 - (void)display
 {
-    if (!self.grid) {
-        self.grid = [CAShapeLayer new];
-    }
+
     self.bounds = [UIScreen mainScreen].bounds;
     self.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent: 0.2].CGColor;
     
-    self.grid = [self createGrid];
-    [self addSublayer: self.grid];
+    if(!self.grid){
+        self.grid = [self createGrid];
+        [self addSublayer: self.grid];
+    }
     
+    if(!self.labelsDrawn){
+        [self createCoordinateLabels];
+        self.labelsDrawn = YES;
+    }
     
-    [self createCoordinateLabels];
+    for (CALayer *point in self.points) {
+        [point removeFromSuperlayer];
+    }
     
     for (CALayer *point in self.points) {
         [self addSublayer:point];
@@ -85,8 +83,6 @@
 {
     CATextLayer *text = [CATextLayer new];
     text.contentsScale = [UIScreen mainScreen].scale;
-//    text.string = @"(100,100)";
-    
     text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
     text.bounds = CGRectMake(0, 0, 100, 30);
     text.position = point;
