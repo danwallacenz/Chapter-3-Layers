@@ -307,7 +307,7 @@
     [self.lay11 addSublayer: lay21];
     
     UIImageView* smiley =
-    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smileyiPhone"]];
+    [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smiley"]];
     CGRect r = smiley.frame;
     r.origin = CGPointMake(460,76);
     smiley.frame = r;

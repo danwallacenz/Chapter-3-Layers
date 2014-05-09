@@ -22,8 +22,6 @@
 		E014630C19189A2E00E043A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01462EB19189A2D00E043A3 /* UIKit.framework */; };
 		E014631419189A2E00E043A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E014631219189A2E00E043A3 /* InfoPlist.strings */; };
 		E014631619189A2E00E043A3 /* Chapter_3_LayersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */; };
-		E01463221918A16B00E043A3 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = E01463201918A16B00E043A3 /* Contents.json */; };
-		E01463231918A16B00E043A3 /* smileyiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = E01463211918A16B00E043A3 /* smileyiPhone.png */; };
 		E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0353E98191C6AE30075FDB8 /* OverlayLayer.m */; };
 		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
 		E0F80EB7191B262F0040F83F /* 396px-Mona_Lisa.png in Resources */ = {isa = PBXBuildFile; fileRef = E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */; };
@@ -60,8 +58,6 @@
 		E014631119189A2E00E043A3 /* Chapter 3 LayersTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chapter 3 LayersTests-Info.plist"; sourceTree = "<group>"; };
 		E014631319189A2E00E043A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chapter_3_LayersTests.m; sourceTree = "<group>"; };
-		E01463201918A16B00E043A3 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		E01463211918A16B00E043A3 /* smileyiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smileyiPhone.png; sourceTree = "<group>"; };
 		E0353E97191C6AE30075FDB8 /* OverlayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayLayer.h; sourceTree = "<group>"; };
 		E0353E98191C6AE30075FDB8 /* OverlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLayer.m; sourceTree = "<group>"; };
 		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
@@ -136,7 +132,6 @@
 				E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */,
 				E01462FF19189A2D00E043A3 /* ViewController.h */,
 				E014630019189A2D00E043A3 /* ViewController.m */,
-				E014631F1918A16B00E043A3 /* smiley.imageset */,
 				E014630219189A2D00E043A3 /* Images.xcassets */,
 				E01462EE19189A2D00E043A3 /* Supporting Files */,
 			);
@@ -170,16 +165,6 @@
 				E014631219189A2E00E043A3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E014631F1918A16B00E043A3 /* smiley.imageset */ = {
-			isa = PBXGroup;
-			children = (
-				E01463201918A16B00E043A3 /* Contents.json */,
-				E01463211918A16B00E043A3 /* smileyiPhone.png */,
-			);
-			name = smiley.imageset;
-			path = "../../iOS7-book-examples/Programming-iOS-Book-Examples-master/bk2ch03p095layerHierarchy/ch16p445layerHierarchy/Images.xcassets/smiley.imageset";
 			sourceTree = "<group>";
 		};
 		E0353E9A191C6AF10075FDB8 /* layers */ = {
@@ -267,8 +252,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01463221918A16B00E043A3 /* Contents.json in Resources */,
-				E01463231918A16B00E043A3 /* smileyiPhone.png in Resources */,
 				E01462FE19189A2D00E043A3 /* Main_iPad.storyboard in Resources */,
 				E014630319189A2D00E043A3 /* Images.xcassets in Resources */,
 				E01462FB19189A2D00E043A3 /* Main_iPhone.storyboard in Resources */,
