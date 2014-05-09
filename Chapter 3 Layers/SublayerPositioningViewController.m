@@ -81,6 +81,8 @@
     
     self.scrollToRectLabel.text
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
+
+    [self.overlayLayer drawPoint: self.cAScrollLayer.position];
 }
 
 - (IBAction)scrollToPointX:(UISlider *)sender

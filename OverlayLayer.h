@@ -10,4 +10,6 @@
 
 @interface OverlayLayer : CAScrollLayer
 
+-(void)drawPoint:(CGPoint)point;
+
 @end

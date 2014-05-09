@@ -17,6 +17,25 @@
 
 @implementation OverlayLayer
 
+-(void)drawPoint:(CGPoint)point
+{
+    CAShapeLayer *pointLayer = [CAShapeLayer new];
+    pointLayer.contentsScale = [UIScreen mainScreen].scale;
+    pointLayer.fillColor = [UIColor redColor].CGColor;
+    pointLayer.lineWidth = 2.0;
+    pointLayer.strokeColor = [UIColor redColor].CGColor;
+    pointLayer.bounds = self.bounds;
+    pointLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddEllipseInRect(path, nil, CGRectMake(point.x, point.y, 60, 60));
+    CGPathRelease(path);
+    
+    [self addSublayer:pointLayer];
+    [self setNeedsDisplay];
+}
+
+
 - (void)display
 {
     if (!self.grid) {
