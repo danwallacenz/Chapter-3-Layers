@@ -43,7 +43,6 @@
     [self setNeedsDisplay];
 }
 
-
 - (void)display
 {
 

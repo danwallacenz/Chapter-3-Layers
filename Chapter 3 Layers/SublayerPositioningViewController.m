@@ -42,6 +42,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectXSliderValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectYSliderValueLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *cAScrollLayerBoundsLabel;
+
+
 @end
 
 @implementation SublayerPositioningViewController
@@ -83,6 +86,21 @@
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
 
     [self.overlayLayer drawPoint: self.cAScrollLayer.position];
+    
+    
+//    CGSize imageSize = ((UIImage *)self.cAScrollLayer.contents).size;
+    CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
+    
+    [self.overlayLayer drawPoint: boundsOrigin];
+//    [self.overlayLayer drawPoint: ((UIImage *)self.cAScrollLayer.contents).size;
+
+    
+//    CGPoint convertedNewRectOrigin = [self.overlayLayer convertPoint: newRect.origin fromLayer: self.cAScrollLayer];
+//    [self.overlayLayer drawPoint: convertedNewRectOrigin];
+    
+//    [self.overlayLayer drawPoint: newRect.origin];
+    
+    self.cAScrollLayerBoundsLabel.text = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", self.self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.bounds.origin.y, self.cAScrollLayer.bounds.size.width, self.cAScrollLayer.bounds.size.height];
 }
 
 - (IBAction)scrollToPointX:(UISlider *)sender
