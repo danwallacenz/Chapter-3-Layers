@@ -99,7 +99,8 @@
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size; // UIImageView
     CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
 
-    [self.overlayLayer drawPoint: boundsTopRight withColor:[UIColor blueColor]];
+//    [self.overlayLayer drawPoint: boundsTopRight withColor:[UIColor blueColor]];
+    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right"];
     
 }
 

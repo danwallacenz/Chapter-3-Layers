@@ -21,9 +21,10 @@
 
 -(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
 {
-    [self drawPoint:point withColor: [UIColor redColor]];
-    
-    
+    [self drawPoint:point withColor: color];
+    CATextLayer *label = [self drawText: string atPoint: CGPointMake(point.x, point.y + 20.0)];
+    [self addSublayer: label];
+//    [self setNeedsDisplay];
 }
 
 
@@ -95,16 +96,6 @@
 
 -(CATextLayer *)drawCoordinateAtPoint: (CGPoint)point
 {
-//    CATextLayer *text = [CATextLayer new];
-//    text.contentsScale = [UIScreen mainScreen].scale;
-//    text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
-//    text.bounds = CGRectMake(0, 0, 100, 30);
-//    text.position = point;
-//    text.alignmentMode = kCAAlignmentCenter;
-//    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
-//    text.fontSize = 10.0;
-//    return text;
-    
     return [self drawText:[NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ] atPoint:point];
 }
 
@@ -121,18 +112,18 @@
     return text;
 }
 
--(CATextLayer *)createTextAtPoint: (CGPoint)point
-{
-    CATextLayer *text = [CATextLayer new];
-    text.contentsScale = [UIScreen mainScreen].scale;
-    text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
-    text.bounds = CGRectMake(0, 0, 100, 30);
-    text.position = point;
-    text.alignmentMode = kCAAlignmentCenter;
-    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
-    text.fontSize = 10.0;
-    return text;
-}
+//-(CATextLayer *)createTextAtPoint: (CGPoint)point
+//{
+//    CATextLayer *text = [CATextLayer new];
+//    text.contentsScale = [UIScreen mainScreen].scale;
+//    text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
+//    text.bounds = CGRectMake(0, 0, 100, 30);
+//    text.position = point;
+//    text.alignmentMode = kCAAlignmentCenter;
+//    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
+//    text.fontSize = 10.0;
+//    return text;
+//}
 
 - (CAShapeLayer *)createGrid
 {
