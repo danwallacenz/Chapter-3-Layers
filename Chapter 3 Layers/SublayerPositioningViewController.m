@@ -76,35 +76,25 @@
 {
     CGRect newRect = self.cAScrollLayer.frame;
 
-//    newRect.origin = CGPointMake(newRect.origin.x + self.scrollToRectOriginX , newRect.origin.y + self.scrollToRectOriginY);
     newRect.origin = CGPointMake(self.scrollToRectOriginX , self.scrollToRectOriginY);
-    
-//    newRect = [self.cAScrollLayer convertRect:newRect fromLayer: self.view.layer];
-    
     [self.cAScrollLayer scrollToRect: newRect];
     
     self.scrollToRectLabel.text
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
 
+    // draw various things
     [self.overlayLayer drawPoint: self.cAScrollLayer.position];
     
-    
-
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
     [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin"] ;
     
-//    CGPoint scrollLayerPosition = self.cAScrollLayer.position;
-
-//    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + self.imageSize.width * 2.0, boundsOrigin.y );
-    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size; // UIImageView
+    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
+    
     CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
-
-//    [self.overlayLayer drawPoint: boundsTopRight withColor:[UIColor blueColor]];
     [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right"];
     
     CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
-    [self.overlayLayer drawRect: imageBounds];
-    
+    [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
 }
 
 - (IBAction)scrollToPointX:(UISlider *)sender

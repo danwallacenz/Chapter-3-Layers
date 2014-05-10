@@ -16,6 +16,8 @@
 
 -(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string;
 
--(void)drawRect: (CGRect)rect;
+-(CALayer *)drawRect: (CGRect)rect;
+
+-(void)drawRect: (CGRect)rect withName:(NSString *)name;
 
 @end

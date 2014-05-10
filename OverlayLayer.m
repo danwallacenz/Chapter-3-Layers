@@ -14,6 +14,9 @@
 @property (strong, nonatomic) CATextLayer *text;
 @property (strong, nonatomic) NSMutableArray *points;
 @property (strong, nonatomic) NSMutableArray *rects;
+
+@property (strong, nonatomic) NSMutableDictionary *layers;
+
 @property BOOL labelsDrawn;
 
 @end
@@ -21,20 +24,32 @@
 @implementation OverlayLayer
 
 
--(void)drawRect: (CGRect)rect
+-(void)drawRect: (CGRect)rect withName:(NSString *)name
 {
+    
+    if(!self.layers){
+        self.layers = [NSMutableDictionary new];
+    }
+    CALayer *previous = [self.layers objectForKey:name];
+    if(previous){
+        [previous removeFromSuperlayer];
+        [self.layers removeObjectForKey:name];
+        previous = nil;
+    }
+    [self.layers setObject: [self drawRect:rect] forKey:name];
+}
 
+-(CALayer *)drawRect: (CGRect)rect
+{
     CAShapeLayer *rectLayer = [CAShapeLayer new];
     rectLayer.contentsScale = [UIScreen mainScreen].scale;
     rectLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1].CGColor;
     rectLayer.lineWidth = 2.0;
     rectLayer.lineDashPattern = @[@2,@3];
     rectLayer.strokeColor = [UIColor whiteColor].CGColor;
-//    rectLayer.bounds = CGRectMake(0, 0, 5, 5);
-//    rectLayer.position = rect.origin;
-    rectLayer.opaque = NO;
-//    rectLayer.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.99] .CGColor;
-    rectLayer.backgroundColor = [UIColor clearColor].CGColor;
+    
+//    rectLayer.opaque = NO;
+//    rectLayer.backgroundColor = [UIColor clearColor].CGColor;
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, nil, rect);
@@ -49,6 +64,7 @@
     [self addSublayer:rectLayer];
     [self setNeedsDisplay];
     
+    return rectLayer;
 }
 
 -(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
