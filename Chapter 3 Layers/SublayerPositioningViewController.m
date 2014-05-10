@@ -91,7 +91,7 @@
     
 
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
-    [self.overlayLayer drawPoint: boundsOrigin];
+    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin"] ;
     
 //    CGPoint scrollLayerPosition = self.cAScrollLayer.position;
 
@@ -101,6 +101,9 @@
 
 //    [self.overlayLayer drawPoint: boundsTopRight withColor:[UIColor blueColor]];
     [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right"];
+    
+    CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
+    [self.overlayLayer drawRect: imageBounds];
     
 }
 

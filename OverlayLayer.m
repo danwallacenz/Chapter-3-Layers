@@ -13,18 +13,49 @@
 @property (strong, nonatomic) CAShapeLayer *grid;
 @property (strong, nonatomic) CATextLayer *text;
 @property (strong, nonatomic) NSMutableArray *points;
+@property (strong, nonatomic) NSMutableArray *rects;
 @property BOOL labelsDrawn;
 
 @end
 
 @implementation OverlayLayer
 
+
+-(void)drawRect: (CGRect)rect
+{
+
+    CAShapeLayer *rectLayer = [CAShapeLayer new];
+    rectLayer.contentsScale = [UIScreen mainScreen].scale;
+    rectLayer.fillColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1].CGColor;
+    rectLayer.lineWidth = 2.0;
+    rectLayer.lineDashPattern = @[@2,@3];
+    rectLayer.strokeColor = [UIColor whiteColor].CGColor;
+//    rectLayer.bounds = CGRectMake(0, 0, 5, 5);
+//    rectLayer.position = rect.origin;
+    rectLayer.opaque = NO;
+//    rectLayer.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.99] .CGColor;
+    rectLayer.backgroundColor = [UIColor clearColor].CGColor;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, nil, rect);
+    rectLayer.path = path;
+    CGPathRelease(path);
+    
+    if(!self.rects){
+        self.rects = [[NSMutableArray alloc]init];
+    }
+    [self.rects addObject:rectLayer];
+    
+    [self addSublayer:rectLayer];
+    [self setNeedsDisplay];
+    
+}
+
 -(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
 {
     [self drawPoint:point withColor: color];
     CATextLayer *label = [self drawText: string atPoint: CGPointMake(point.x, point.y + 20.0)];
     [self addSublayer: label];
-//    [self setNeedsDisplay];
 }
 
 
@@ -64,7 +95,7 @@
 
     self.bounds = [UIScreen mainScreen].bounds;
     self.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent: 0.2].CGColor;
+//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent: 0.2].CGColor;
     
     if(!self.grid){
         self.grid = [self createGrid];
