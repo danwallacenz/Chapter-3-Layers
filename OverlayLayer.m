@@ -74,6 +74,10 @@
     }
     CALayer *previous = [self.layers objectForKey:name];
     if(previous){
+       
+        for (CALayer *subLayer in previous.sublayers) {
+            [subLayer removeFromSuperlayer];
+        }
         [previous removeFromSuperlayer];
         [self.layers removeObjectForKey:name];
         previous = nil;
@@ -88,9 +92,13 @@
 
 -(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
 {
-    CALayer *pointLayer =  [self drawPoint:point withColor: color];
-    CATextLayer *label = [self drawText: string atPoint: CGPointMake(point.x, point.y + 20.0)];
-    [self addSublayer: label];
+    CALayer *pointLayer =  [self drawPoint: point withColor: color];
+    
+    CGPoint convertedPoint = [pointLayer convertPoint:point fromLayer: self];
+
+    CATextLayer *label = [self drawText: string atPoint: CGPointMake(convertedPoint.x, convertedPoint.y + 20.0)];
+    
+    [pointLayer addSublayer: label];
     return pointLayer;
 }
 
