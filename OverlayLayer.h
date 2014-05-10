@@ -14,4 +14,6 @@
 
 -(void)drawPoint:(CGPoint)point withColor:(UIColor *)color;
 
+-(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string;
+
 @end

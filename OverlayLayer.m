@@ -19,29 +19,16 @@
 
 @implementation OverlayLayer
 
+-(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
+{
+    [self drawPoint:point withColor: [UIColor redColor]];
+    
+    
+}
+
+
 -(void)drawPoint:(CGPoint)point
 {
-//    CAShapeLayer *pointLayer = [CAShapeLayer new];
-//    pointLayer.contentsScale = [UIScreen mainScreen].scale;
-//    pointLayer.fillColor = [UIColor redColor].CGColor;
-//    pointLayer.lineWidth = 2.0;
-//    pointLayer.strokeColor = [UIColor redColor].CGColor;
-//    pointLayer.bounds = CGRectMake(0, 0, 5, 5);
-//    pointLayer.position = point;
-//    
-//    CGMutablePathRef path = CGPathCreateMutable();
-//    CGPathAddEllipseInRect(path, nil, pointLayer.bounds);
-//    pointLayer.path = path;
-//    CGPathRelease(path);
-//
-//    if(!self.points){
-//        self.points = [[NSMutableArray alloc]init];
-//    }
-//    [self.points addObject:pointLayer];
-//    
-//    [self addSublayer:pointLayer];
-//    [self setNeedsDisplay];
-    
     [self drawPoint:point withColor: [UIColor redColor]];
 }
 
@@ -101,9 +88,37 @@
 {
     for (int x=0; x < self.bounds.size.width; x += 100) {
         for (int y=0 ; y < self.bounds.size.height; y +=100) {
-            [self addSublayer:[self createTextAtPoint: CGPointMake(x, y)]];
+            [self addSublayer:[self drawCoordinateAtPoint: CGPointMake(x, y)]];
         }
     }
+}
+
+-(CATextLayer *)drawCoordinateAtPoint: (CGPoint)point
+{
+//    CATextLayer *text = [CATextLayer new];
+//    text.contentsScale = [UIScreen mainScreen].scale;
+//    text.string = [NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ];
+//    text.bounds = CGRectMake(0, 0, 100, 30);
+//    text.position = point;
+//    text.alignmentMode = kCAAlignmentCenter;
+//    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
+//    text.fontSize = 10.0;
+//    return text;
+    
+    return [self drawText:[NSString stringWithFormat:@"(%1.0f, %1.0f)",point.x, point.y ] atPoint:point];
+}
+
+-(CATextLayer *)drawText: (NSString *)string atPoint: (CGPoint)point
+{
+    CATextLayer *text = [CATextLayer new];
+    text.contentsScale = [UIScreen mainScreen].scale;
+    text.string = string;
+    text.bounds = CGRectMake(0, 0, 100, 30);
+    text.position = point;
+    text.alignmentMode = kCAAlignmentCenter;
+    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
+    text.fontSize = 10.0;
+    return text;
 }
 
 -(CATextLayer *)createTextAtPoint: (CGPoint)point
