@@ -93,7 +93,7 @@
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
     [self.overlayLayer drawPoint: boundsOrigin];
     
-    CGPoint scrollLayerPosition = self.cAScrollLayer.position;
+//    CGPoint scrollLayerPosition = self.cAScrollLayer.position;
 
 //    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + self.imageSize.width * 2.0, boundsOrigin.y );
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size; // UIImageView

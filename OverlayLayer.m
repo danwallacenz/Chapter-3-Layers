@@ -21,11 +21,38 @@
 
 -(void)drawPoint:(CGPoint)point
 {
+//    CAShapeLayer *pointLayer = [CAShapeLayer new];
+//    pointLayer.contentsScale = [UIScreen mainScreen].scale;
+//    pointLayer.fillColor = [UIColor redColor].CGColor;
+//    pointLayer.lineWidth = 2.0;
+//    pointLayer.strokeColor = [UIColor redColor].CGColor;
+//    pointLayer.bounds = CGRectMake(0, 0, 5, 5);
+//    pointLayer.position = point;
+//    
+//    CGMutablePathRef path = CGPathCreateMutable();
+//    CGPathAddEllipseInRect(path, nil, pointLayer.bounds);
+//    pointLayer.path = path;
+//    CGPathRelease(path);
+//
+//    if(!self.points){
+//        self.points = [[NSMutableArray alloc]init];
+//    }
+//    [self.points addObject:pointLayer];
+//    
+//    [self addSublayer:pointLayer];
+//    [self setNeedsDisplay];
+    
+    [self drawPoint:point withColor: [UIColor redColor]];
+}
+
+-(void)drawPoint:(CGPoint)point withColor:(UIColor *)color
+{
+    
     CAShapeLayer *pointLayer = [CAShapeLayer new];
     pointLayer.contentsScale = [UIScreen mainScreen].scale;
-    pointLayer.fillColor = [UIColor redColor].CGColor;
+    pointLayer.fillColor = color.CGColor;
     pointLayer.lineWidth = 2.0;
-    pointLayer.strokeColor = [UIColor redColor].CGColor;
+    pointLayer.strokeColor = color.CGColor;
     pointLayer.bounds = CGRectMake(0, 0, 5, 5);
     pointLayer.position = point;
     
@@ -33,7 +60,7 @@
     CGPathAddEllipseInRect(path, nil, pointLayer.bounds);
     pointLayer.path = path;
     CGPathRelease(path);
-
+    
     if(!self.points){
         self.points = [[NSMutableArray alloc]init];
     }
@@ -41,6 +68,7 @@
     
     [self addSublayer:pointLayer];
     [self setNeedsDisplay];
+    
 }
 
 - (void)display

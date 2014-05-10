@@ -62,7 +62,7 @@
 		E0353E98191C6AE30075FDB8 /* OverlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLayer.m; sourceTree = "<group>"; };
 		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
 		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
-		E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "396px-Mona_Lisa.png"; path = "Chapter 3 Layers/396px-Mona_Lisa.png"; sourceTree = "<group>"; };
+		E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "396px-Mona_Lisa.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				E0353E9A191C6AF10075FDB8 /* layers */,
-				E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */,
 				E01462ED19189A2D00E043A3 /* Chapter 3 Layers */,
 				E014630F19189A2E00E043A3 /* Chapter 3 LayersTests */,
 				E01462E619189A2D00E043A3 /* Frameworks */,
@@ -141,6 +140,7 @@
 		E01462EE19189A2D00E043A3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */,
 				E01462EF19189A2D00E043A3 /* Chapter 3 Layers-Info.plist */,
 				E01462F019189A2D00E043A3 /* InfoPlist.strings */,
 				E01462F319189A2D00E043A3 /* main.m */,

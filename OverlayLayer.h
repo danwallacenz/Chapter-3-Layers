@@ -12,4 +12,6 @@
 
 -(void)drawPoint:(CGPoint)point;
 
+-(void)drawPoint:(CGPoint)point withColor:(UIColor *)color;
+
 @end
