@@ -83,15 +83,15 @@
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
 
     // draw various things
-    [self.overlayLayer drawPoint: self.cAScrollLayer.position];
+    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
     
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
-    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin"] ;
+    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin" name:@"bounds.origin"] ;
     
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
     
     CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
-    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right"];
+    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right" name:@"bounds.top.right"];
     
     CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
     [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];

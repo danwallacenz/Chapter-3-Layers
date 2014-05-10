@@ -10,13 +10,15 @@
 
 @interface OverlayLayer : CAScrollLayer
 
--(void)drawPoint:(CGPoint)point;
+//-(void)drawPoint:(CGPoint)point;
+//
+//-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color;
+//
+//-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string;
 
--(void)drawPoint:(CGPoint)point withColor:(UIColor *)color;
+-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)label name: (NSString *)name;
 
--(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string;
-
--(CALayer *)drawRect: (CGRect)rect;
+//-(CALayer *)drawRect: (CGRect)rect;
 
 -(void)drawRect: (CGRect)rect withName:(NSString *)name;
 

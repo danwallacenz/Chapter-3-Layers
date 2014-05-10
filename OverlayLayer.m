@@ -12,8 +12,8 @@
 
 @property (strong, nonatomic) CAShapeLayer *grid;
 @property (strong, nonatomic) CATextLayer *text;
-@property (strong, nonatomic) NSMutableArray *points;
-@property (strong, nonatomic) NSMutableArray *rects;
+//@property (strong, nonatomic) NSMutableArray *points;
+//@property (strong, nonatomic) NSMutableArray *rects;
 
 @property (strong, nonatomic) NSMutableDictionary *layers;
 
@@ -56,10 +56,10 @@
     rectLayer.path = path;
     CGPathRelease(path);
     
-    if(!self.rects){
-        self.rects = [[NSMutableArray alloc]init];
-    }
-    [self.rects addObject:rectLayer];
+//    if(!self.rects){
+//        self.rects = [[NSMutableArray alloc]init];
+//    }
+//    [self.rects addObject:rectLayer];
     
     [self addSublayer:rectLayer];
     [self setNeedsDisplay];
@@ -67,11 +67,31 @@
     return rectLayer;
 }
 
--(void)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
+-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)label name: (NSString *)name
 {
-    [self drawPoint:point withColor: color];
+    if(!self.layers){
+        self.layers = [NSMutableDictionary new];
+    }
+    CALayer *previous = [self.layers objectForKey:name];
+    if(previous){
+        [previous removeFromSuperlayer];
+        [self.layers removeObjectForKey:name];
+        previous = nil;
+    }
+    
+    CALayer *pointLayer = [self drawPoint:point withColor:color label:label];
+    [self.layers setObject: pointLayer forKey:name];
+    
+    [self setNeedsDisplay];
+    return pointLayer;
+}
+
+-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color label: (NSString *)string
+{
+    CALayer *pointLayer =  [self drawPoint:point withColor: color];
     CATextLayer *label = [self drawText: string atPoint: CGPointMake(point.x, point.y + 20.0)];
     [self addSublayer: label];
+    return pointLayer;
 }
 
 
@@ -80,7 +100,7 @@
     [self drawPoint:point withColor: [UIColor redColor]];
 }
 
--(void)drawPoint:(CGPoint)point withColor:(UIColor *)color
+-(CALayer *)drawPoint:(CGPoint)point withColor:(UIColor *)color
 {
     
     CAShapeLayer *pointLayer = [CAShapeLayer new];
@@ -96,14 +116,15 @@
     pointLayer.path = path;
     CGPathRelease(path);
     
-    if(!self.points){
-        self.points = [[NSMutableArray alloc]init];
-    }
-    [self.points addObject:pointLayer];
+//    if(!self.points){
+//        self.points = [[NSMutableArray alloc]init];
+//    }
+//    [self.points addObject:pointLayer];
     
     [self addSublayer:pointLayer];
-    [self setNeedsDisplay];
+//    [self setNeedsDisplay];
     
+    return pointLayer;
 }
 
 - (void)display
@@ -123,13 +144,13 @@
         self.labelsDrawn = YES;
     }
     
-    for (CALayer *point in self.points) {
-        [point removeFromSuperlayer];
-    }
+//    for (CALayer *point in self.points) {
+//        [point removeFromSuperlayer];
+//    }
     
-    for (CALayer *point in self.points) {
-        [self addSublayer:point];
-    }
+//    for (CALayer *point in self.points) {
+//        [self addSublayer:point];
+//    }
 }
 
 - (void) createCoordinateLabels
