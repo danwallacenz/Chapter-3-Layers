@@ -583,10 +583,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.70663207120000004" green="0.74729128649999998" blue="0.34306569339999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.82352941176470584" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.75046694617457865" green="0.82049186862244894" blue="0.71624893718917482" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.49803921568627452" green="0.41176470588235292" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="sublayer positioning" id="veM-Sj-j0e"/>
@@ -631,6 +631,7 @@
             <point key="canvasLocation" x="-82" y="-174"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.80000000000000004" green="0.41960784313725491" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

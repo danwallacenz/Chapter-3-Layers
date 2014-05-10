@@ -176,7 +176,8 @@
     self.layer0.bounds = CGRectMake(0, 0, 100, 100);
     self.layer0.position = CGPointMake(50, 50);
     self.layer0.anchorPoint = CGPointMake(0.5, 0.5);
-    self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
+//    self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
+    self.layer0.backgroundColor = [UIColor colorWithRed:127.0/255.0 green:67.0/255.0 blue:119.0/255.0 alpha:0.8].CGColor;
     [self.view.layer addSublayer:self.layer0];
     [self addPositionMark:self.layer0];
     [self addAnchorPointMark: self.layer0];
@@ -200,7 +201,8 @@
     cAScrollLayer.position =  CGPointMake( 300, 200);
     cAScrollLayer.anchorPoint = CGPointMake(0,0); // top left
     
-    cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
+//    cAScrollLayer.backgroundColor = [[UIColor whiteColor] CGColor];
+    cAScrollLayer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
     
     CALayer *imageLayer = [CALayer new];
     imageLayer.frame = CGRectMake(0, 0, cAScrollLayer.bounds.size.width * 2.0, cAScrollLayer.bounds.size.height * 2.0);
