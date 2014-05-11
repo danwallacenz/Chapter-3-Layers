@@ -499,6 +499,16 @@
                                             <action selector="scrollToPoint:" destination="3PG-vb-1Ne" eventType="touchUpInside" id="y9m-pg-ihv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rth-zH-nPV">
+                                        <rect key="frame" x="20" y="673" width="40" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetView:" destination="3PG-vb-1Ne" eventType="touchUpInside" id="qOv-MU-Y4Z"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.2627450980392157" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

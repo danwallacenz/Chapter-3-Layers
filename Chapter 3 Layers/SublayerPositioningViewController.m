@@ -194,14 +194,53 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self resetScreen];
+//    // black rectangle
+//    self.layer0 = [CALayer new];
+////    self.layer0.frame = CGRectMake(0, 0, 100, 100);
+//    // bounds and position is better for CALayers.
+//    self.layer0.bounds = CGRectMake(0, 0, 100, 100);
+//    self.layer0.position = CGPointMake(50, 50);
+//    self.layer0.anchorPoint = CGPointMake(0.5, 0.5);
+////    self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
+//    self.layer0.backgroundColor = [UIColor colorWithRed:127.0/255.0 green:67.0/255.0 blue:119.0/255.0 alpha:0.8].CGColor;
+//    [self.view.layer addSublayer:self.layer0];
+//    [self addPositionMark:self.layer0];
+//    [self addAnchorPointMark: self.layer0];
+//    
+//    self.cAScrollLayer = [self createMonaLisaScrollLayer];
+//    [self.view.layer addSublayer:  self.cAScrollLayer];
+//    
+//    self.overlayLayer = [OverlayLayer new];
+//    [self.view.layer addSublayer:  self.overlayLayer];
+//    [self.overlayLayer setNeedsDisplay];
+//    self.overlayLayer.hidden = YES;
+}
+- (IBAction)resetView:(id)sender
+{
+//    NSMutableArray *subLayers = [[NSMutableArray alloc] initWithArray:self.view.layer.sublayers];
+//    for (CALayer *layer in subLayers) {
+//        [layer removeFromSuperlayer];
+//    }
+//    [self.view setNeedsDisplay];
+    [self.layer0 removeFromSuperlayer];
+    [self.cAScrollLayer removeFromSuperlayer];
+    [self.overlayLayer removeFromSuperlayer];
+    
+    [self resetScreen];
+//    [self.view setNeedsDisplay];
+}
+
+-(void)resetScreen
+{
     // black rectangle
     self.layer0 = [CALayer new];
-//    self.layer0.frame = CGRectMake(0, 0, 100, 100);
+    //    self.layer0.frame = CGRectMake(0, 0, 100, 100);
     // bounds and position is better for CALayers.
     self.layer0.bounds = CGRectMake(0, 0, 100, 100);
     self.layer0.position = CGPointMake(50, 50);
     self.layer0.anchorPoint = CGPointMake(0.5, 0.5);
-//    self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
+    //    self.layer0.backgroundColor = [[UIColor blackColor] CGColor];
     self.layer0.backgroundColor = [UIColor colorWithRed:127.0/255.0 green:67.0/255.0 blue:119.0/255.0 alpha:0.8].CGColor;
     [self.view.layer addSublayer:self.layer0];
     [self addPositionMark:self.layer0];
