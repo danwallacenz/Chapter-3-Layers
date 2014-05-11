@@ -74,6 +74,8 @@
 {
     self.scrollToRectOriginX = sender.value;
     self.scrollToRectXSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginX ];
+    
+    [self drawNewRectPosition];
 }
 
 - (IBAction)scrollRectToOriginY:(UISlider *)sender
@@ -81,7 +83,11 @@
     self.scrollToRectOriginY = sender.value;
     self.scrollToRectYSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginY ];
     
-    
+    [self drawNewRectPosition];
+}
+
+-(void)drawNewRectPosition
+{
     CGPoint newOrigin = CGPointMake(self.cAScrollLayer.position.x - self.scrollRectToXValueSlider.value, self.cAScrollLayer.position.y - self.scrollRectToYValueSlider.value);
     
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
@@ -224,7 +230,7 @@
 - (IBAction)xPositionChanged:(UISlider *)sender
 {
     self.layer0.position = CGPointMake(sender.value, self.yPositionSlider.value);
-    self.positionXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    self.positionXLabel.text = [NSString stringWithFormat:@"%1.0f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark:self.layer0];
     NSLog(@" ");
@@ -236,7 +242,7 @@
 - (IBAction)yPositionChanged:(UISlider *)sender
 {
     self.layer0.position = CGPointMake(self.xPositionSlider.value, sender.value);
-    self.positionYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    self.positionYLabel.text = [NSString stringWithFormat:@"%1.0f", sender.value];
     [self addAnchorPointMark: self.layer0];
     [self addPositionMark: self.layer0];
     NSLog(@" ");
