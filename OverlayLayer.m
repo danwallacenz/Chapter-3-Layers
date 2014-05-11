@@ -96,7 +96,7 @@
     
     CGPoint convertedPoint = [pointLayer convertPoint:point fromLayer: self];
 
-    CATextLayer *label = [self drawText: string atPoint: CGPointMake(convertedPoint.x, convertedPoint.y + 20.0)];
+    CATextLayer *label = [self drawText: string atPoint: CGPointMake(convertedPoint.x, convertedPoint.y + 20.0) color: color];
     
     [pointLayer addSublayer: label];
     return pointLayer;
@@ -177,13 +177,18 @@
 
 -(CATextLayer *)drawText: (NSString *)string atPoint: (CGPoint)point
 {
+    return [self drawText:string atPoint:point color: [UIColor whiteColor]];
+}
+
+-(CATextLayer *)drawText: (NSString *)string atPoint: (CGPoint)point color: (UIColor *) color
+{
     CATextLayer *text = [CATextLayer new];
     text.contentsScale = [UIScreen mainScreen].scale;
     text.string = string;
     text.bounds = CGRectMake(0, 0, 100, 30);
     text.position = point;
     text.alignmentMode = kCAAlignmentCenter;
-    text.foregroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.8].CGColor;
+    text.foregroundColor = color.CGColor;
     text.fontSize = 10.0;
     return text;
 }
