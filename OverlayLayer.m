@@ -206,9 +206,10 @@
     CAShapeLayer *grid = [CAShapeLayer new];
 
     grid.contentsScale = [UIScreen mainScreen].scale;
-    grid.lineWidth = 2.0;
-    grid.fillColor = [[UIColor blackColor] colorWithAlphaComponent: 0.1].CGColor;
-    grid.strokeColor = [[UIColor grayColor] colorWithAlphaComponent: 0.5].CGColor;
+    grid.lineWidth = 1.0;
+    grid.lineDashPattern = @[@2,@3];
+    grid.fillColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.1].CGColor;
+//    grid.strokeColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.5].CGColor;
     
     CGMutablePathRef p = CGPathCreateMutable();
     CGFloat lineWidth = 1.0;
