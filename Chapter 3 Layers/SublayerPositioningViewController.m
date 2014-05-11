@@ -89,18 +89,21 @@
         = [NSString stringWithFormat:@"(%1.0f,%1.0f) h:%1.0f, w:%1.0f", newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height];
 
     // draw various things
-    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
-    
+//    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
+//    
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
-    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin" name:@"bounds.origin"] ;
     
+//    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin" name:@"bounds.origin"] ;
+//    
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
-    
-    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
-    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right" name:@"bounds.top.right"];
+//
+//    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
+//    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right" name:@"bounds.top.right"];
     
     CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
     [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
+    
+    [self drawCAScrollLayer];
 }
 
 
@@ -110,12 +113,15 @@
     
     CGPoint scrollPoint = CGPointMake((self.cAScrollLayer.position.x + sender.value), (self.cAScrollLayer.position.y + self.scrollToPointYSlider.value));
 
-    self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%1.0f", sender.value];
     
 //    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
     CGPoint convertedPoint = [self.cAScrollLayer convertPoint:scrollPoint toLayer: self.cAScrollLayer.sublayers[0]];
     
-    [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
+    [self.overlayLayer drawPoint: convertedPoint
+                       withColor: [UIColor yellowColor]
+                           label: [NSString stringWithFormat:  @"scrollPoint: (%1.0f,%1.0f)", convertedPoint.x, convertedPoint.y]
+                            name:@"scroll.point"];
    
     [self drawCAScrollLayer];
 }
@@ -124,11 +130,14 @@
 {
     CGPoint scrollPoint = CGPointMake( (self.cAScrollLayer.position.x + self.scrollToPointXSlider.value), (self.cAScrollLayer.position.y + sender.value) );
 
-    self.scrollToPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    self.scrollToPointYLabel.text = [NSString stringWithFormat:@"%1.0f", sender.value];
 
     CGPoint convertedPoint = [self.cAScrollLayer convertPoint:scrollPoint toLayer: self.cAScrollLayer.sublayers[0]];
     
-    [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
+    [self.overlayLayer drawPoint: convertedPoint
+                       withColor: [UIColor yellowColor]
+                           label: [NSString stringWithFormat:  @"scrollPoint: (%1.0f,%1.0f)", convertedPoint.x, convertedPoint.y]
+                            name:@"scroll.point"];
     
     [self drawCAScrollLayer];
 }
@@ -149,15 +158,20 @@
 -(void)drawCAScrollLayer
 {
     // draw various things
-    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
+//    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
+    [self.overlayLayer drawPoint: self.cAScrollLayer.position
+                       withColor: [UIColor greenColor]
+                           label: [NSString stringWithFormat:@"bounds origin: (%1.0f,%1.0f)",self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.bounds.origin.y]
+                            name: @"cAScrollLayer.position"];
     
     CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
-    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin" name:@"bounds.origin"] ;
+    
+//    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"sublayer origin" name:@"bounds.origin"] ;
     
     CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
     
-    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
-    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right" name:@"bounds.top.right"];
+//    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
+//    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor greenColor] label: @"bounds top right" name:@""];
     
     CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
     [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
