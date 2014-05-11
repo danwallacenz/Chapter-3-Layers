@@ -45,6 +45,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectXSliderValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectYSliderValueLabel;
 
+@property (weak, nonatomic) IBOutlet UITextView *caScrollLayerTextView;
+
+
+
 //@property (weak, nonatomic) IBOutlet UILabel *cAScrollLayerBoundsLabel;
 
 
@@ -131,9 +135,9 @@
 
 - (IBAction)scrollToPoint:(id)sender
 {
-    CGPoint scrollPoint = CGPointMake(-self.scrollToPointXSlider.value, -self.scrollToPointYSlider.value);
+    CGPoint scrollPoint = CGPointMake(self.scrollToPointXSlider.value, self.scrollToPointYSlider.value);
     
-    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+//    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
     
     [self.cAScrollLayer scrollToPoint: scrollPoint];
     
@@ -157,6 +161,14 @@
     
     CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
     [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
+    
+    NSString *position = [NSString stringWithFormat: @"position: %1.0f, %1.0f",self.cAScrollLayer.position.x, self.cAScrollLayer.position.y];
+    
+    NSString *anchorPoint = [NSString stringWithFormat: @"anchorPoint: %1.0f, %1.0f",self.cAScrollLayer.anchorPoint.x, self.cAScrollLayer.anchorPoint.y];
+    
+    NSString *bounds = [NSString stringWithFormat: @"bounds: %1.0f, %1.0f, %1.0f, %1.0f",self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.bounds.origin.y, self.cAScrollLayer.bounds.size.width, self.cAScrollLayer.bounds.size.height];
+    
+    self.caScrollLayerTextView.text = [NSString stringWithFormat:@"%@\n%@\n%@", position, anchorPoint, bounds];
 }
 
 #pragma mark anchorPoint
@@ -205,6 +217,7 @@
     NSLog(@"self.layer0.position=%f %f", self.layer0.position.x, self.layer0.position.y);
 }
 
+#pragma mark UIViewController methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -221,7 +234,22 @@
     // Do any additional setup after loading the view.
     
     [self initLayers];
+    
+    self.caScrollLayerTextView.layer.cornerRadius = 20.0f;
+    self.caScrollLayerTextView.layer.masksToBounds = YES;
+    self.caScrollLayerTextView.contentInset =  UIEdgeInsetsMake(10.0, 40.0, 20.0, 20.0);
+    self.caScrollLayerTextView.textColor = [UIColor whiteColor];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark initialization
+
 - (IBAction)resetView:(id)sender
 {
     [self.layer0 removeFromSuperlayer];
@@ -252,7 +280,9 @@
     self.overlayLayer = [OverlayLayer new];
     [self.view.layer addSublayer:  self.overlayLayer];
     [self.overlayLayer setNeedsDisplay];
-    self.overlayLayer.hidden = YES;
+//    self.overlayLayer.hidden = YES;
+    
+    [self drawCAScrollLayer];
 }
 
 - (CAScrollLayer *) createMonaLisaScrollLayer
@@ -279,12 +309,7 @@
     return cAScrollLayer;
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark -
 
 - (void) addPositionMark: (CALayer*)layer
 {

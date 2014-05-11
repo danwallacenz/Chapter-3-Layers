@@ -423,14 +423,14 @@
                                             <action selector="scrollToRect:" destination="3PG-vb-1Ne" eventType="touchUpInside" id="KRG-r4-18B"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="show grid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AB-Wn-ZSp">
-                                        <rect key="frame" x="109" y="40" width="76" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" grid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AB-Wn-ZSp">
+                                        <rect key="frame" x="150" y="40" width="35" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zfn-ub-9GT">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfn-ub-9GT">
                                         <rect key="frame" x="193" y="35" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
@@ -476,7 +476,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="scrollToRect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ern-fj-w9w">
-                                        <rect key="frame" x="20" y="293" width="99" height="21"/>
+                                        <rect key="frame" x="20" y="360" width="99" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -509,6 +509,13 @@
                                             <action selector="resetView:" destination="3PG-vb-1Ne" eventType="touchUpInside" id="qOv-MU-Y4Z"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vok-Kf-OTd">
+                                        <rect key="frame" x="20" y="497" width="216" height="167"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.41960784309999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.2627450980392157" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -630,6 +637,7 @@
                         <outlet property="anchorPointXSlider" destination="0KN-5d-PFg" id="esc-mW-GxW"/>
                         <outlet property="anchorPointYLabel" destination="hpH-PT-PV8" id="mCm-eB-fW1"/>
                         <outlet property="anchorPointYSlider" destination="B87-zP-URe" id="c53-eg-kiX"/>
+                        <outlet property="caScrollLayerTextView" destination="vok-Kf-OTd" id="wkU-HE-JGo"/>
                         <outlet property="positionXLabel" destination="sNb-kn-SKP" id="dFj-sn-07f"/>
                         <outlet property="positionYLabel" destination="pX7-hL-kaC" id="Frr-RE-Rk5"/>
                         <outlet property="scrollToPointXLabel" destination="16r-rx-14K" id="GAn-M4-ErR"/>
