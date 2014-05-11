@@ -12,8 +12,10 @@
 @interface ContentResizinAndPositioningViewController ()
 
 @property (strong, nonatomic) CALayer *monaLisaFrameLayer;
-@property (strong, nonatomic) CALayer *monaLisaLayer;
+//@property (strong, nonatomic) CALayer *monaLisaLayer;
 @property  (strong, nonatomic) OverlayLayer *overlayLayer;
+
+@property (weak, nonatomic) IBOutlet UILabel *contentsGravityValueLabel;
 
 @end
 
@@ -48,6 +50,10 @@
  
  
  */
+- (IBAction)masksToBoundsChanged:(id)sender
+{
+    self.monaLisaFrameLayer.masksToBounds = !self.monaLisaFrameLayer.masksToBounds;
+}
 
 - (IBAction)contentsGravityChanged:(UISegmentedControl *)sender
 {
@@ -55,41 +61,45 @@
     long selectedIndex = sender.selectedSegmentIndex;
     switch (selectedIndex) {
         case 0:
-            self.monaLisaLayer.contentsGravity = kCAGravityCenter;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityCenter;
             break;
         case 1:
-            self.monaLisaLayer.contentsGravity = kCAGravityTop;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityTop;
             break;
         case 2:
-            self.monaLisaLayer.contentsGravity = kCAGravityBottom;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityBottom;
             break;
         case 3:
-            self.monaLisaLayer.contentsGravity = kCAGravityLeft;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityLeft;
             break;
         case 4:
-            self.monaLisaLayer.contentsGravity = kCAGravityTopLeft;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityRight;
             break;
         case 5:
-            self.monaLisaLayer.contentsGravity = kCAGravityTopRight;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityTopLeft;
             break;
         case 6:
-            self.monaLisaLayer.contentsGravity = kCAGravityBottomLeft;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityTopRight;
             break;
         case 7:
-            self.monaLisaLayer.contentsGravity = kCAGravityBottomRight;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityBottomLeft;
             break;
         case 8:
-            self.monaLisaLayer.contentsGravity = kCAGravityResize;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityBottomRight;
             break;
         case 9:
-            self.monaLisaLayer.contentsGravity = kCAGravityResizeAspect;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityResize;
             break;
         case 10:
-            self.monaLisaLayer.contentsGravity = kCAGravityResizeAspectFill;
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityResizeAspect;
+            break;
+        case 11:
+            self.monaLisaFrameLayer.contentsGravity = kCAGravityResizeAspectFill;
             break;
         default:
             break;
     }
+    self.contentsGravityValueLabel.text = [NSString stringWithFormat:@"contentsGravity = %@",self.monaLisaFrameLayer.contentsGravity]; //self.monaLisaLayer.contentsGravity;
     [self.view setNeedsDisplay];
 }
 
@@ -100,27 +110,54 @@
     UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
     
     CALayer *layer = [CALayer layer];
-    layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2));
-    layer.position =  CGPointMake( 200, 100);
+    layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width - 50 , monaLisa.size.height - 50));
+    layer.position =  CGPointMake( 200, 200);
     layer.anchorPoint = CGPointMake(0,0); // top left
     
     layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
     
-    CALayer *imageLayer = [CALayer new];
-
-    imageLayer.frame = CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2);
-    imageLayer.contents = (id)monaLisa.CGImage;
-    [layer addSublayer:imageLayer];
+//    CALayer *imageLayer = [CALayer new];
     
-    self.monaLisaLayer = imageLayer;
+//    imageLayer.frame = CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2);
+    layer.contents = (id)monaLisa.CGImage;
+//    [layer addSublayer:imageLayer];
+//    
+//    self.monaLisaLayer = imageLayer;
     
     layer.opaque = YES;
     layer.borderColor = [UIColor redColor].CGColor;
+    layer.cornerRadius = 12.0f;
     layer.borderWidth = 2.0;
-//    layer.contentsGravity = kCAGravityBottomRight;
+    layer.masksToBounds = YES;
     
     return layer;
 }
+
+//- (CALayer *) createMonaLisaLayer
+//{
+//    UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
+//    
+//    CALayer *layer = [CALayer layer];
+//    layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2));
+//    layer.position =  CGPointMake( 200, 100);
+//    layer.anchorPoint = CGPointMake(0,0); // top left
+//    
+//    layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
+//    
+//    CALayer *imageLayer = [CALayer new];
+//
+//    imageLayer.frame = CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2);
+//    imageLayer.contents = (id)monaLisa.CGImage;
+//    [layer addSublayer:imageLayer];
+//    
+//    self.monaLisaLayer = imageLayer;
+//    
+//    layer.opaque = YES;
+//    layer.borderColor = [UIColor redColor].CGColor;
+//    layer.borderWidth = 2.0;
+//    
+//    return layer;
+//}
 
 #pragma mark view controller methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -141,7 +178,10 @@
     
     self.overlayLayer = [OverlayLayer new];
     [self.view.layer addSublayer:  self.overlayLayer];
-//    [self.overlayLayer setNeedsDisplay];
+    
+    self.contentsGravityValueLabel.text = [NSString stringWithFormat:@"contentsGravity = %@",self.monaLisaFrameLayer.contentsGravity];
+    
+    [self.overlayLayer setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning
