@@ -103,11 +103,13 @@
 #pragma mark scrollToPoint:
 - (IBAction)scrollToPointX:(UISlider *)sender
 {
-    CGPoint scrollPoint = CGPointMake(sender.value, self.scrollToPointYSlider.value);
+    
+    CGPoint scrollPoint = CGPointMake((self.cAScrollLayer.position.x + sender.value), (self.cAScrollLayer.position.y + self.scrollToPointYSlider.value));
 
     self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
     
-    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+//    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+    CGPoint convertedPoint = [self.cAScrollLayer convertPoint:scrollPoint toLayer: self.cAScrollLayer.sublayers[0]];
     
     [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
    
@@ -116,11 +118,11 @@
 
 - (IBAction)scrollToPointY:(UISlider *)sender
 {
-    CGPoint scrollPoint = CGPointMake( self.scrollToPointXSlider.value, sender.value );
+    CGPoint scrollPoint = CGPointMake( (self.cAScrollLayer.position.x + self.scrollToPointXSlider.value), (self.cAScrollLayer.position.y + sender.value) );
 
     self.scrollToPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
 
-    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+    CGPoint convertedPoint = [self.cAScrollLayer convertPoint:scrollPoint toLayer: self.cAScrollLayer.sublayers[0]];
     
     [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
     
