@@ -24,6 +24,7 @@
 		E014631619189A2E00E043A3 /* Chapter_3_LayersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */; };
 		E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0353E98191C6AE30075FDB8 /* OverlayLayer.m */; };
 		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
+		E0DEB54C1920253C005F6C8D /* ContentResizinAndPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */; };
 		E0F80EB7191B262F0040F83F /* 396px-Mona_Lisa.png in Resources */ = {isa = PBXBuildFile; fileRef = E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		E0353E98191C6AE30075FDB8 /* OverlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLayer.m; sourceTree = "<group>"; };
 		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
 		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
+		E0DEB54A1920253C005F6C8D /* ContentResizinAndPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentResizinAndPositioningViewController.h; path = ../ContentResizinAndPositioningViewController.h; sourceTree = "<group>"; };
+		E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentResizinAndPositioningViewController.m; path = ../ContentResizinAndPositioningViewController.m; sourceTree = "<group>"; };
 		E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "396px-Mona_Lisa.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,14 +126,11 @@
 		E01462ED19189A2D00E043A3 /* Chapter 3 Layers */ = {
 			isa = PBXGroup;
 			children = (
+				E0DEB54D19202E5B005F6C8D /* view controllers */,
 				E01462F619189A2D00E043A3 /* AppDelegate.h */,
 				E01462F719189A2D00E043A3 /* AppDelegate.m */,
 				E01462F919189A2D00E043A3 /* Main_iPhone.storyboard */,
 				E01462FC19189A2D00E043A3 /* Main_iPad.storyboard */,
-				E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */,
-				E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */,
-				E01462FF19189A2D00E043A3 /* ViewController.h */,
-				E014630019189A2D00E043A3 /* ViewController.m */,
 				E014630219189A2D00E043A3 /* Images.xcassets */,
 				E01462EE19189A2D00E043A3 /* Supporting Files */,
 			);
@@ -174,6 +174,19 @@
 				E0353E97191C6AE30075FDB8 /* OverlayLayer.h */,
 			);
 			name = layers;
+			sourceTree = "<group>";
+		};
+		E0DEB54D19202E5B005F6C8D /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E0DEB54A1920253C005F6C8D /* ContentResizinAndPositioningViewController.h */,
+				E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */,
+				E01462FF19189A2D00E043A3 /* ViewController.h */,
+				E014630019189A2D00E043A3 /* ViewController.m */,
+				E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */,
+				E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */,
+			);
+			name = "view controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */,
+				E0DEB54C1920253C005F6C8D /* ContentResizinAndPositioningViewController.m in Sources */,
 				E014630119189A2D00E043A3 /* ViewController.m in Sources */,
 				E01462F819189A2D00E043A3 /* AppDelegate.m in Sources */,
 				E01462F419189A2D00E043A3 /* main.m in Sources */,
