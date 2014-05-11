@@ -110,6 +110,8 @@
     CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
     
     [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
+   
+    [self drawCAScrollLayer];
 }
 
 - (IBAction)scrollToPointY:(UISlider *)sender
@@ -121,6 +123,8 @@
     CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
     
     [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
+    
+    [self drawCAScrollLayer];
 }
 
 - (IBAction)scrollToPoint:(id)sender
@@ -130,8 +134,28 @@
     CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
     
     [self.cAScrollLayer scrollToPoint: scrollPoint];
+    
+    [self drawCAScrollLayer];
 }
 
+#pragma draw points
+
+-(void)drawCAScrollLayer
+{
+    // draw various things
+    [self.overlayLayer drawPoint: self.cAScrollLayer.position withColor: [UIColor orangeColor] label: @"cAScrollLayer.position" name: @"cAScrollLayer.position"];
+    
+    CGPoint boundsOrigin = CGPointMake(self.cAScrollLayer.position.x - self.cAScrollLayer.bounds.origin.x, self.cAScrollLayer.position.y - self.cAScrollLayer.bounds.origin.y);
+    [self.overlayLayer drawPoint: boundsOrigin withColor:[UIColor greenColor] label: @"bounds.origin" name:@"bounds.origin"] ;
+    
+    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
+    
+    CGPoint boundsTopRight = CGPointMake(boundsOrigin.x + imageSize.width, boundsOrigin.y );
+    [self.overlayLayer drawPoint: boundsTopRight withColor: [UIColor blueColor] label: @"bounds top right" name:@"bounds.top.right"];
+    
+    CGRect imageBounds = CGRectMake(boundsOrigin.x, boundsOrigin.y, imageSize.width, imageSize.height);
+    [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
+}
 
 #pragma mark anchorPoint
 - (IBAction)anchorPointXChanged:(UISlider *)sender
