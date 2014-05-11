@@ -489,6 +489,16 @@
                                             <action selector="scrollLayerMasksToBoundsToggle:" destination="3PG-vb-1Ne" eventType="valueChanged" id="oHB-vj-1cc"/>
                                         </connections>
                                     </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVM-OK-nSE">
+                                        <rect key="frame" x="20" y="230" width="39" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Scroll">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scrollToPoint:" destination="3PG-vb-1Ne" eventType="touchUpInside" id="y9m-pg-ihv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.2627450980392157" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -613,7 +623,9 @@
                         <outlet property="positionXLabel" destination="sNb-kn-SKP" id="dFj-sn-07f"/>
                         <outlet property="positionYLabel" destination="pX7-hL-kaC" id="Frr-RE-Rk5"/>
                         <outlet property="scrollToPointXLabel" destination="16r-rx-14K" id="GAn-M4-ErR"/>
+                        <outlet property="scrollToPointXSlider" destination="qRH-jA-tll" id="crN-q2-aqk"/>
                         <outlet property="scrollToPointYLabel" destination="CqQ-A4-bw1" id="zBj-uD-Ekv"/>
+                        <outlet property="scrollToPointYSlider" destination="AHE-va-11t" id="sk5-8Y-XwE"/>
                         <outlet property="scrollToRectLabel" destination="Fv5-pg-6SY" id="fgn-dZ-me7"/>
                         <outlet property="scrollToRectXSliderValueLabel" destination="YMH-FE-MzA" id="bNy-qy-gEY"/>
                         <outlet property="scrollToRectYSliderValueLabel" destination="M6f-bs-nkI" id="2sX-y2-woe"/>

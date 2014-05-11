@@ -35,6 +35,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToPointYLabel;
+@property (weak, nonatomic) IBOutlet UISlider *scrollToPointXSlider;
+@property (weak, nonatomic) IBOutlet UISlider *scrollToPointYSlider;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectLabel;
@@ -97,18 +99,41 @@
     [self.overlayLayer drawRect: imageBounds withName:@"image bounds"];
 }
 
+
+#pragma mark scrollToPoint:
 - (IBAction)scrollToPointX:(UISlider *)sender
 {
-    [self.cAScrollLayer scrollToPoint: CGPointMake(sender.value, self.cAScrollLayer.bounds.origin.y)];
-     self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    CGPoint scrollPoint = CGPointMake(sender.value, self.scrollToPointYSlider.value);
+
+    self.scrollToPointXLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+    
+    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+    
+    [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
 }
 
 - (IBAction)scrollToPointY:(UISlider *)sender
 {
-    [self.cAScrollLayer scrollToPoint: CGPointMake( self.cAScrollLayer.bounds.origin.x, sender.value )];
+    CGPoint scrollPoint = CGPointMake( self.scrollToPointXSlider.value, sender.value );
+
     self.scrollToPointYLabel.text = [NSString stringWithFormat:@"%f", sender.value];
+
+    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+    
+    [self.overlayLayer drawPoint: convertedPoint withColor: [UIColor yellowColor] label: @"scrollPoint" name:@"scroll.point"];
 }
 
+- (IBAction)scrollToPoint:(id)sender
+{
+    CGPoint scrollPoint = CGPointMake(-self.scrollToPointXSlider.value, -self.scrollToPointYSlider.value);
+    
+    CGPoint convertedPoint = [self.view.layer convertPoint:scrollPoint fromLayer: self.cAScrollLayer];
+    
+    [self.cAScrollLayer scrollToPoint: scrollPoint];
+}
+
+
+#pragma mark anchorPoint
 - (IBAction)anchorPointXChanged:(UISlider *)sender
 {
     self.layer0.anchorPoint = CGPointMake(sender.value, self.anchorPointYSlider.value);
