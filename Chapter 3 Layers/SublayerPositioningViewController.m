@@ -45,6 +45,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectXSliderValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scrollToRectYSliderValueLabel;
 
+@property (weak, nonatomic) IBOutlet UISlider *scrollRectToXValueSlider;
+@property (weak, nonatomic) IBOutlet UISlider *scrollRectToYValueSlider;
+
+
 @property (weak, nonatomic) IBOutlet UITextView *caScrollLayerTextView;
 
 
@@ -75,7 +79,16 @@
 - (IBAction)scrollRectToOriginY:(UISlider *)sender
 {
     self.scrollToRectOriginY = sender.value;
-        self.scrollToRectYSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginY ];
+    self.scrollToRectYSliderValueLabel.text = [NSString stringWithFormat:@"%1.0f",self.scrollToRectOriginY ];
+    
+    
+    CGPoint newOrigin = CGPointMake(self.cAScrollLayer.position.x - self.scrollRectToXValueSlider.value, self.cAScrollLayer.position.y - self.scrollRectToYValueSlider.value);
+    
+    CGSize imageSize = ((UIImage *)self.cAScrollLayer.sublayers[0]).size;
+    
+    CGRect imageBounds = CGRectMake(newOrigin.x, newOrigin.y, imageSize.width, imageSize.height);
+    
+    [self.overlayLayer drawRect: imageBounds withName:@"newRect bounds"];
 }
 
 - (IBAction)scrollToRect:(UIButton *)sender

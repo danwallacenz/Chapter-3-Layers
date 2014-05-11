@@ -640,6 +640,8 @@
                         <outlet property="caScrollLayerTextView" destination="vok-Kf-OTd" id="wkU-HE-JGo"/>
                         <outlet property="positionXLabel" destination="sNb-kn-SKP" id="dFj-sn-07f"/>
                         <outlet property="positionYLabel" destination="pX7-hL-kaC" id="Frr-RE-Rk5"/>
+                        <outlet property="scrollRectToXValueSlider" destination="cmo-RR-rhS" id="m0R-wo-QjU"/>
+                        <outlet property="scrollRectToYValueSlider" destination="Dil-Bf-KAr" id="i7H-lA-FVQ"/>
                         <outlet property="scrollToPointXLabel" destination="16r-rx-14K" id="GAn-M4-ErR"/>
                         <outlet property="scrollToPointXSlider" destination="qRH-jA-tll" id="crN-q2-aqk"/>
                         <outlet property="scrollToPointYLabel" destination="CqQ-A4-bw1" id="zBj-uD-Ekv"/>
