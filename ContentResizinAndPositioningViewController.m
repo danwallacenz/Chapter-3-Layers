@@ -28,6 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentsRectOriginXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentsRectOriginYLabel;
 
+@property (weak, nonatomic) IBOutlet UISwitch *lockWidthAndHeightSwitch;
+
+
 @end
 
 @implementation ContentResizinAndPositioningViewController
@@ -42,11 +45,17 @@
 //    CGFloat height = self.contentsRectHeightSlider.value;
 //
 //    self.monaLisaFrameLayer.contentsRect = CGRectMake(width,height,width,height);
-        [self changeContentsRect];
+    if (self.lockWidthAndHeightSwitch.on) {
+        self.contentsRectHeightSlider.value = sender.value;
+    }
+    [self changeContentsRect];
 }
 
 - (IBAction)contentsRectHeightChanged:(UISlider *)sender
 {
+    if (self.lockWidthAndHeightSwitch.on) {
+        self.contentsRectWidthSlider.value = sender.value;
+    }
     [self changeContentsRect];
 }
 
@@ -65,15 +74,19 @@
 {
     CGFloat width = self.contentsRectWidthSlider.value;
     CGFloat height = self.contentsRectHeightSlider.value;
+//    if (self.lockWidthAndHeightSwitch.on) {
+//        height = self.contentsRectWidthSlider.value;
+//    }
+
     CGFloat originX = self.contentsRectOriginXSlider.value;
     CGFloat originY = self.contentsRectOriginYSlider.value;
     
     self.monaLisaFrameLayer2.contentsRect = CGRectMake(originX,originY,width,height);
     
-    self.contentsRectWidthLabel.text = [NSString stringWithFormat:@"w=%1.1f",self.contentsRectWidthSlider.value];
-    self.contentsRectHeightLabel.text = [NSString stringWithFormat:@"h=%1.1f",self.contentsRectHeightSlider.value];
-    self.contentsRectOriginXLabel.text = [NSString stringWithFormat:@"origin.x=%1.1f",self.contentsRectOriginXSlider.value];
-    self.contentsRectOriginYLabel.text = [NSString stringWithFormat:@"origin.y=%1.1f",self.contentsRectOriginYSlider.value];
+    self.contentsRectWidthLabel.text = [NSString stringWithFormat:@"w:%1.1f",self.contentsRectWidthSlider.value];
+    self.contentsRectHeightLabel.text = [NSString stringWithFormat:@"h:%1.1f",self.contentsRectHeightSlider.value];
+    self.contentsRectOriginXLabel.text = [NSString stringWithFormat:@"o.x:%1.1f",self.contentsRectOriginXSlider.value];
+    self.contentsRectOriginYLabel.text = [NSString stringWithFormat:@"o.y:%1.1f",self.contentsRectOriginYSlider.value];
     
 }
 
@@ -116,39 +129,51 @@
     switch (selectedIndex) {
         case 0:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityCenter;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityCenter;
             break;
         case 1:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityTop;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityTop;
             break;
         case 2:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityBottom;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityBottom;
             break;
         case 3:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityLeft;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityLeft;
             break;
         case 4:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityRight;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityRight;
             break;
         case 5:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityTopLeft;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityTopLeft;
             break;
         case 6:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityTopRight;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityTopRight;
             break;
         case 7:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityBottomLeft;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityBottomLeft;
             break;
         case 8:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityBottomRight;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityBottomRight;
             break;
         case 9:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityResize;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityResize;
             break;
         case 10:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityResizeAspect;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityResizeAspect;
             break;
         case 11:
             self.monaLisaFrameLayer.contentsGravity = kCAGravityResizeAspectFill;
+            self.monaLisaFrameLayer2.contentsGravity = kCAGravityResizeAspectFill;
             break;
         default:
             break;
