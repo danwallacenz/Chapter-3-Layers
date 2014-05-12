@@ -663,6 +663,25 @@
             </objects>
             <point key="canvasLocation" x="956" y="-527"/>
         </scene>
+        <!--Transform View Controller - Transforms-->
+        <scene sceneID="UIO-jn-cuT">
+            <objects>
+                <viewController id="j6X-Nr-CNC" customClass="TransformViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="03z-EN-kDg"/>
+                        <viewControllerLayoutGuide type="bottom" id="ScJ-Me-3wB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WXB-uN-9qx">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Transforms" id="HYZ-bu-7rK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iDw-JN-axV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-996" y="-174"/>
+        </scene>
         <!--Content Resizin And Positioning View Controller - Content Resizing and Positioning-->
         <scene sceneID="lhq-wc-Mjp">
             <objects>
@@ -904,6 +923,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="j6X-Nr-CNC" kind="relationship" relationship="viewControllers" id="WSS-Pf-i7d"/>
                         <segue destination="3PG-vb-1Ne" kind="relationship" relationship="viewControllers" id="Ag8-Xu-xmW"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="mdW-Hb-Pyf"/>
                         <segue destination="N8H-Y1-c2B" kind="relationship" relationship="viewControllers" id="7x7-z0-sM5"/>

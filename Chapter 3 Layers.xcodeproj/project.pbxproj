@@ -23,6 +23,9 @@
 		E014631419189A2E00E043A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E014631219189A2E00E043A3 /* InfoPlist.strings */; };
 		E014631619189A2E00E043A3 /* Chapter_3_LayersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */; };
 		E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0353E98191C6AE30075FDB8 /* OverlayLayer.m */; };
+		E05544BC1920BDD800A378A3 /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E05544BB1920BDD800A378A3 /* TransformViewController.m */; };
+		E05544BF1920C01800A378A3 /* CompassLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E05544BE1920C01800A378A3 /* CompassLayer.m */; };
+		E05544C21920C03E00A378A3 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05544C11920C03E00A378A3 /* CompassView.m */; };
 		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
 		E0DEB54C1920253C005F6C8D /* ContentResizinAndPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */; };
 		E0DEB553192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DEB552192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png */; };
@@ -62,6 +65,12 @@
 		E014631519189A2E00E043A3 /* Chapter_3_LayersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chapter_3_LayersTests.m; sourceTree = "<group>"; };
 		E0353E97191C6AE30075FDB8 /* OverlayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayLayer.h; sourceTree = "<group>"; };
 		E0353E98191C6AE30075FDB8 /* OverlayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayLayer.m; sourceTree = "<group>"; };
+		E05544BA1920BDD800A378A3 /* TransformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformViewController.h; sourceTree = "<group>"; };
+		E05544BB1920BDD800A378A3 /* TransformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformViewController.m; sourceTree = "<group>"; };
+		E05544BD1920C01800A378A3 /* CompassLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassLayer.h; sourceTree = "<group>"; };
+		E05544BE1920C01800A378A3 /* CompassLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassLayer.m; sourceTree = "<group>"; };
+		E05544C01920C03E00A378A3 /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassView.h; sourceTree = "<group>"; };
+		E05544C11920C03E00A378A3 /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassView.m; sourceTree = "<group>"; };
 		E0B86A19191A489E00080B6E /* SublayerPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SublayerPositioningViewController.h; sourceTree = "<group>"; };
 		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
 		E0DEB54A1920253C005F6C8D /* ContentResizinAndPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentResizinAndPositioningViewController.h; path = ../ContentResizinAndPositioningViewController.h; sourceTree = "<group>"; };
@@ -97,6 +106,10 @@
 		E01462DB19189A2D00E043A3 = {
 			isa = PBXGroup;
 			children = (
+				E05544C01920C03E00A378A3 /* CompassView.h */,
+				E05544C11920C03E00A378A3 /* CompassView.m */,
+				E05544BA1920BDD800A378A3 /* TransformViewController.h */,
+				E05544BB1920BDD800A378A3 /* TransformViewController.m */,
 				E0DEB552192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png */,
 				E0353E9A191C6AF10075FDB8 /* layers */,
 				E01462ED19189A2D00E043A3 /* Chapter 3 Layers */,
@@ -173,6 +186,8 @@
 		E0353E9A191C6AF10075FDB8 /* layers */ = {
 			isa = PBXGroup;
 			children = (
+				E05544BD1920C01800A378A3 /* CompassLayer.h */,
+				E05544BE1920C01800A378A3 /* CompassLayer.m */,
 				E0353E98191C6AE30075FDB8 /* OverlayLayer.m */,
 				E0353E97191C6AE30075FDB8 /* OverlayLayer.h */,
 			);
@@ -293,8 +308,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */,
+				E05544BC1920BDD800A378A3 /* TransformViewController.m in Sources */,
 				E0DEB54C1920253C005F6C8D /* ContentResizinAndPositioningViewController.m in Sources */,
 				E014630119189A2D00E043A3 /* ViewController.m in Sources */,
+				E05544BF1920C01800A378A3 /* CompassLayer.m in Sources */,
+				E05544C21920C03E00A378A3 /* CompassView.m in Sources */,
 				E01462F819189A2D00E043A3 /* AppDelegate.m in Sources */,
 				E01462F419189A2D00E043A3 /* main.m in Sources */,
 				E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */,
