@@ -36,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    // Add a CompassView to to my view.  It has a CompassLayer as its layer.
     CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
     compassView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: compassView];

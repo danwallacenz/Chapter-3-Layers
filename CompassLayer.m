@@ -88,7 +88,6 @@ BOOL _didSetup;
      [self performSelector:@selector(mask:) withObject:arrow];
     
     self.arrow = arrow;
-    
 }
 
 - (void) resizeArrowLayer: (CALayer*) arrow {
