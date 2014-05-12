@@ -31,6 +31,12 @@
 @property (weak, nonatomic) IBOutlet UISwitch *lockWidthAndHeightSwitch;
 
 
+@property (weak, nonatomic) IBOutlet UISlider *anchorPointXSlider;
+@property (weak, nonatomic) IBOutlet UILabel *anchorPointXLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *anchorPointYSlider;
+@property (weak, nonatomic) IBOutlet UILabel *anchorPointYLabel;
+
 @end
 
 @implementation ContentResizinAndPositioningViewController
@@ -39,12 +45,22 @@
 
 #pragma mark actions
 
+- (IBAction)anchorPointXChanged:(UISlider *)sender
+{
+    self.monaLisaFrameLayer.anchorPoint = CGPointMake(sender.value, self.anchorPointYSlider.value);
+    self.monaLisaFrameLayer2.anchorPoint = CGPointMake(sender.value, self.anchorPointYSlider.value);
+    self.anchorPointXLabel.text = [NSString stringWithFormat:@"%1.1f", sender.value ];
+}
+
+- (IBAction)anchorPointYChanged:(UISlider *)sender
+{
+    self.monaLisaFrameLayer.anchorPoint = CGPointMake(self.anchorPointXSlider.value, sender.value);
+    self.monaLisaFrameLayer2.anchorPoint = CGPointMake(self.anchorPointXSlider.value, sender.value);
+    self.anchorPointYLabel.text = [NSString stringWithFormat:@"%1.1f", sender.value ];
+}
+
 - (IBAction)contentsRectWidthChanged:(UISlider *)sender
 {
-//    CGFloat width = self.contentsRectWidthSlider.value;
-//    CGFloat height = self.contentsRectHeightSlider.value;
-//
-//    self.monaLisaFrameLayer.contentsRect = CGRectMake(width,height,width,height);
     if (self.lockWidthAndHeightSwitch.on) {
         self.contentsRectHeightSlider.value = sender.value;
     }
@@ -74,9 +90,6 @@
 {
     CGFloat width = self.contentsRectWidthSlider.value;
     CGFloat height = self.contentsRectHeightSlider.value;
-//    if (self.lockWidthAndHeightSwitch.on) {
-//        height = self.contentsRectWidthSlider.value;
-//    }
 
     CGFloat originX = self.contentsRectOriginXSlider.value;
     CGFloat originY = self.contentsRectOriginYSlider.value;
@@ -190,8 +203,8 @@
     CALayer *layer = [CALayer layer];
     
     layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width - 50 , monaLisa.size.height - 50));
-    layer.position =  CGPointMake( 200, 200);
-    layer.anchorPoint = CGPointMake(0,0); // top left
+    layer.position =  CGPointMake( 250, 350);
+//    layer.anchorPoint = CGPointMake(0,0); // top left
     layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
     layer.contents = (id)monaLisa.CGImage;
     layer.opaque = YES;
@@ -199,7 +212,7 @@
     layer.cornerRadius = 12.0f;
     layer.borderWidth = 2.0;
     layer.masksToBounds = YES;
-    
+    layer.contentsGravity = kCAGravityCenter;
     return layer;
 }
 
@@ -209,13 +222,15 @@
     CALayer *layer = [CALayer layer];
     
     layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width , monaLisa.size.height));
-    layer.position =  CGPointMake( 400, 200);
-    layer.anchorPoint = CGPointMake(0,0); // top left
+    layer.position =  CGPointMake( 600, 350);
+//    layer.anchorPoint = CGPointMake(0,0); // top left
     layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
     layer.contents = (id)monaLisa.CGImage;
     layer.opaque = YES;
     layer.borderColor = [UIColor orangeColor].CGColor;
 //    layer.cornerRadius = 12.0f;
+    
+    layer.contentsGravity = kCAGravityCenter;
     layer.borderWidth = 2.0;
     layer.masksToBounds = YES;
     
