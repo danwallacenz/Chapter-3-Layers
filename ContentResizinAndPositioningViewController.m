@@ -17,11 +17,43 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentsGravityValueLabel;
 
+@property (weak, nonatomic) IBOutlet UISlider *contentsRectWidthSlider;
+@property (weak, nonatomic) IBOutlet UISlider *contentsRectHeightSlider;
+@property (weak, nonatomic) IBOutlet UILabel *contentsRectWidthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentsRectHeightLabel;
+
 @end
 
 @implementation ContentResizinAndPositioningViewController
 
+
+
 #pragma mark actions
+
+- (IBAction)contentsRectWidthChanged:(UISlider *)sender
+{
+//    CGFloat width = self.contentsRectWidthSlider.value;
+//    CGFloat height = self.contentsRectHeightSlider.value;
+//
+//    self.monaLisaFrameLayer.contentsRect = CGRectMake(width,height,width,height);
+        [self changeContentsRect];
+}
+
+- (IBAction)contentsRectHeightChanged:(UISlider *)sender
+{
+    [self changeContentsRect];
+}
+
+-(void)changeContentsRect
+{
+    CGFloat width = self.contentsRectWidthSlider.value;
+    CGFloat height = self.contentsRectHeightSlider.value;
+    
+    self.monaLisaFrameLayer.contentsRect = CGRectMake(width,height,width,height);
+    
+    self.contentsRectWidthLabel.text = [NSString stringWithFormat:@"w=%1.1f",self.contentsRectWidthSlider.value];
+    self.contentsRectHeightLabel.text = [NSString stringWithFormat:@"h=%1.1f",self.contentsRectHeightSlider.value];
+}
 
 /*
  #pragma mark - Navigation
@@ -180,6 +212,8 @@
     [self.view.layer addSublayer:  self.overlayLayer];
     
     self.contentsGravityValueLabel.text = [NSString stringWithFormat:@"contentsGravity = %@",self.monaLisaFrameLayer.contentsGravity];
+    
+    [self changeContentsRect];
     
     [self.overlayLayer setNeedsDisplay];
 }

@@ -686,6 +686,38 @@
                                             <action selector="masksToBoundsChanged:" destination="N8H-Y1-c2B" eventType="valueChanged" id="F9I-Ts-zqz"/>
                                         </connections>
                                     </switch>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="contentsRect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMl-h9-lwG">
+                                        <rect key="frame" x="20" y="38" width="107" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7ZV-IB-wJ8">
+                                        <rect key="frame" x="18" y="60" width="136" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="contentsRectWidthChanged:" destination="N8H-Y1-c2B" eventType="valueChanged" id="0no-pa-mma"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="meC-eg-Yab">
+                                        <rect key="frame" x="18" y="98" width="136" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="contentsRectHeightChanged:" destination="N8H-Y1-c2B" eventType="valueChanged" id="Oy8-yQ-kWP"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2U-zi-KKX">
+                                        <rect key="frame" x="160" y="55" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXd-gJ-zIB">
+                                        <rect key="frame" x="160" y="92" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -731,6 +763,10 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="contentsGravityValueLabel" destination="J7C-th-9Lc" id="gqT-Sh-p5k"/>
+                        <outlet property="contentsRectHeightLabel" destination="wXd-gJ-zIB" id="aRI-8x-hPI"/>
+                        <outlet property="contentsRectHeightSlider" destination="meC-eg-Yab" id="Ru4-8q-czi"/>
+                        <outlet property="contentsRectWidthLabel" destination="D2U-zi-KKX" id="l7Z-lc-jRR"/>
+                        <outlet property="contentsRectWidthSlider" destination="7ZV-IB-wJ8" id="t58-ra-xDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ax1-Hb-fze" userLabel="First Responder" sceneMemberID="firstResponder"/>
