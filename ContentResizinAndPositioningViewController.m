@@ -19,8 +19,14 @@
 
 @property (weak, nonatomic) IBOutlet UISlider *contentsRectWidthSlider;
 @property (weak, nonatomic) IBOutlet UISlider *contentsRectHeightSlider;
+@property (weak, nonatomic) IBOutlet UISlider *contentsRectOriginXSlider;
+@property (weak, nonatomic) IBOutlet UISlider *contentsRectOriginYSlider;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *contentsRectWidthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentsRectHeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentsRectOriginXLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentsRectOriginYLabel;
 
 @end
 
@@ -44,15 +50,31 @@
     [self changeContentsRect];
 }
 
+- (IBAction)contentsRectOriginXChanged:(UISlider *)sender
+{
+    [self changeContentsRect];
+}
+
+- (IBAction)contentsRectOriginYChanged:(UISlider *)sender
+{
+    [self changeContentsRect];
+}
+
+
 -(void)changeContentsRect
 {
     CGFloat width = self.contentsRectWidthSlider.value;
     CGFloat height = self.contentsRectHeightSlider.value;
+    CGFloat originX = self.contentsRectOriginXSlider.value;
+    CGFloat originY = self.contentsRectOriginYSlider.value;
     
-    self.monaLisaFrameLayer.contentsRect = CGRectMake(width,height,width,height);
+    self.monaLisaFrameLayer.contentsRect = CGRectMake(originX,originY,width,height);
     
     self.contentsRectWidthLabel.text = [NSString stringWithFormat:@"w=%1.1f",self.contentsRectWidthSlider.value];
     self.contentsRectHeightLabel.text = [NSString stringWithFormat:@"h=%1.1f",self.contentsRectHeightSlider.value];
+    self.contentsRectOriginXLabel.text = [NSString stringWithFormat:@"origin.x=%1.1f",self.contentsRectOriginXSlider.value];
+    self.contentsRectOriginYLabel.text = [NSString stringWithFormat:@"origin.y=%1.1f",self.contentsRectOriginYSlider.value];
+    
 }
 
 /*
