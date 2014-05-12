@@ -12,7 +12,7 @@
 @interface ContentResizinAndPositioningViewController ()
 
 @property (strong, nonatomic) CALayer *monaLisaFrameLayer;
-//@property (strong, nonatomic) CALayer *monaLisaLayer;
+@property (strong, nonatomic) CALayer *monaLisaFrameLayer2;
 @property  (strong, nonatomic) OverlayLayer *overlayLayer;
 
 @property (weak, nonatomic) IBOutlet UILabel *contentsGravityValueLabel;
@@ -68,7 +68,7 @@
     CGFloat originX = self.contentsRectOriginXSlider.value;
     CGFloat originY = self.contentsRectOriginYSlider.value;
     
-    self.monaLisaFrameLayer.contentsRect = CGRectMake(originX,originY,width,height);
+    self.monaLisaFrameLayer2.contentsRect = CGRectMake(originX,originY,width,height);
     
     self.contentsRectWidthLabel.text = [NSString stringWithFormat:@"w=%1.1f",self.contentsRectWidthSlider.value];
     self.contentsRectHeightLabel.text = [NSString stringWithFormat:@"h=%1.1f",self.contentsRectHeightSlider.value];
@@ -162,22 +162,13 @@
 - (CALayer *) createMonaLisaLayer
 {
     UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
-    
     CALayer *layer = [CALayer layer];
+    
     layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width - 50 , monaLisa.size.height - 50));
     layer.position =  CGPointMake( 200, 200);
     layer.anchorPoint = CGPointMake(0,0); // top left
-    
     layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
-    
-//    CALayer *imageLayer = [CALayer new];
-    
-//    imageLayer.frame = CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2);
     layer.contents = (id)monaLisa.CGImage;
-//    [layer addSublayer:imageLayer];
-//    
-//    self.monaLisaLayer = imageLayer;
-    
     layer.opaque = YES;
     layer.borderColor = [UIColor redColor].CGColor;
     layer.cornerRadius = 12.0f;
@@ -187,31 +178,24 @@
     return layer;
 }
 
-//- (CALayer *) createMonaLisaLayer
-//{
-//    UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa.png"];
-//    
-//    CALayer *layer = [CALayer layer];
-//    layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2));
-//    layer.position =  CGPointMake( 200, 100);
-//    layer.anchorPoint = CGPointMake(0,0); // top left
-//    
-//    layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
-//    
-//    CALayer *imageLayer = [CALayer new];
-//
-//    imageLayer.frame = CGRectMake(0, 0, monaLisa.size.width * 2, monaLisa.size.height * 2);
-//    imageLayer.contents = (id)monaLisa.CGImage;
-//    [layer addSublayer:imageLayer];
-//    
-//    self.monaLisaLayer = imageLayer;
-//    
-//    layer.opaque = YES;
-//    layer.borderColor = [UIColor redColor].CGColor;
-//    layer.borderWidth = 2.0;
-//    
-//    return layer;
-//}
+- (CALayer *) createMonaLisaLayer2
+{
+    UIImage *monaLisa = [UIImage imageNamed:@"396px-Mona_Lisa-with-one-pixel-empty-on-edges.png"];
+    CALayer *layer = [CALayer layer];
+    
+    layer.bounds = CGRectIntegral(CGRectMake(0, 0, monaLisa.size.width , monaLisa.size.height));
+    layer.position =  CGPointMake( 400, 200);
+    layer.anchorPoint = CGPointMake(0,0); // top left
+    layer.backgroundColor = [UIColor colorWithRed:204/255.0 green:107/255.0 blue:191/255.0 alpha:0.4].CGColor;
+    layer.contents = (id)monaLisa.CGImage;
+    layer.opaque = YES;
+    layer.borderColor = [UIColor orangeColor].CGColor;
+//    layer.cornerRadius = 12.0f;
+    layer.borderWidth = 2.0;
+    layer.masksToBounds = YES;
+    
+    return layer;
+}
 
 #pragma mark view controller methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -229,6 +213,9 @@
     // Do any additional setup after loading the view.
     self.monaLisaFrameLayer = [self createMonaLisaLayer];
     [self.view.layer addSublayer: self.monaLisaFrameLayer];
+    
+     self.monaLisaFrameLayer2 = [self createMonaLisaLayer2];
+    [self.view.layer addSublayer: self.monaLisaFrameLayer2];
     
     self.overlayLayer = [OverlayLayer new];
     [self.view.layer addSublayer:  self.overlayLayer];

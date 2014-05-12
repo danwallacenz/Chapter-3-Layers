@@ -25,6 +25,7 @@
 		E0353E99191C6AE30075FDB8 /* OverlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0353E98191C6AE30075FDB8 /* OverlayLayer.m */; };
 		E0B86A1B191A489E00080B6E /* SublayerPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */; };
 		E0DEB54C1920253C005F6C8D /* ContentResizinAndPositioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */; };
+		E0DEB553192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DEB552192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png */; };
 		E0F80EB7191B262F0040F83F /* 396px-Mona_Lisa.png in Resources */ = {isa = PBXBuildFile; fileRef = E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		E0B86A1A191A489E00080B6E /* SublayerPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SublayerPositioningViewController.m; sourceTree = "<group>"; };
 		E0DEB54A1920253C005F6C8D /* ContentResizinAndPositioningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentResizinAndPositioningViewController.h; path = ../ContentResizinAndPositioningViewController.h; sourceTree = "<group>"; };
 		E0DEB54B1920253C005F6C8D /* ContentResizinAndPositioningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentResizinAndPositioningViewController.m; path = ../ContentResizinAndPositioningViewController.m; sourceTree = "<group>"; };
+		E0DEB552192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "396px-Mona_Lisa-with-one-pixel-empty-on-edges.png"; path = "Chapter 3 Layers/396px-Mona_Lisa-with-one-pixel-empty-on-edges.png"; sourceTree = "<group>"; };
 		E0F80EB6191B262F0040F83F /* 396px-Mona_Lisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "396px-Mona_Lisa.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 		E01462DB19189A2D00E043A3 = {
 			isa = PBXGroup;
 			children = (
+				E0DEB552192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png */,
 				E0353E9A191C6AF10075FDB8 /* layers */,
 				E01462ED19189A2D00E043A3 /* Chapter 3 Layers */,
 				E014630F19189A2E00E043A3 /* Chapter 3 LayersTests */,
@@ -265,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0DEB553192071A9005F6C8D /* 396px-Mona_Lisa-with-one-pixel-empty-on-edges.png in Resources */,
 				E01462FE19189A2D00E043A3 /* Main_iPad.storyboard in Resources */,
 				E014630319189A2D00E043A3 /* Images.xcassets in Resources */,
 				E01462FB19189A2D00E043A3 /* Main_iPhone.storyboard in Resources */,
