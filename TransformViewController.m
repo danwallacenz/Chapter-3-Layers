@@ -7,8 +7,11 @@
 //
 
 #import "TransformViewController.h"
+#import "CompassView.h"
 
 @interface TransformViewController ()
+
+@property (weak, nonatomic) CompassView *compassView;
 
 @end
 
@@ -32,12 +35,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.contentsScale = [UIScreen mainScreen].scale;
-//    gradientLayer.frame= self.b
-//
-    
+
+    CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
+    compassView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview: compassView];
+    self.compassView = compassView; // for zPosition changes later.
+
 }
 
 - (void)didReceiveMemoryWarning

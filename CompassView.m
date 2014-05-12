@@ -7,14 +7,21 @@
 //
 
 #import "CompassView.h"
+#import "CompassLayer.h"
 
 @implementation CompassView
+
++ (Class) layerClass
+{
+    return [CompassLayer class];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+//        self.layer.delegate = self;
     }
     return self;
 }
@@ -27,5 +34,7 @@
     // Drawing code
 }
 */
+
+
 
 @end
