@@ -8,6 +8,12 @@
 
 #import "CompassLayer.h"
 
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+// NSLog(@"Output radians as degrees: %f", RADIANS_TO_DEGREES(0.785398));
+
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+// NSLog(@"Output degrees as radians: %f", DEGREES_TO_RADIANS(45));
+
 @interface CompassLayer()
 
 @property (nonatomic, strong) CALayer *arrow;
@@ -93,15 +99,20 @@ BOOL _didSetup;
     self.arrow = arrow;
     
     // 3D rotation
-//    self.rotationLayer = g;
-//    self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
-//    self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
-//    
+    self.rotationLayer = g;
+    self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
+    self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
+    
+    
+    CGFloat angle = DEGREES_TO_RADIANS(45);
 //    self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
-//    
-//    CATransform3D transform = CATransform3DIdentity;
-//    transform.m34 = -1.0/1000.0;
-//    self.sublayerTransform = transform;
+    self.rotationLayer.transform = CATransform3DMakeRotation(angle, 0, 1, 0);
+    
+
+
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = -1.0/1000.0;
+    self.sublayerTransform = transform;
 }
 
 - (void) resizeArrowLayer: (CALayer*) arrow {

@@ -41,6 +41,11 @@
 
 #pragma mark actions
 
+
+
+
+
+
 - (IBAction)rotationLayerPositionXChanged:(UISlider *)sender
 {
     ((CompassLayer *)self.compassView.layer).rotationLayer.position = CGPointMake(sender.value, self.rotationLayerPositionYSlider.value);
