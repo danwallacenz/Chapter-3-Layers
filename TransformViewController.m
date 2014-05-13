@@ -11,6 +11,12 @@
 #import "CompassLayer.h"
 #import "OverlayLayer.h"
 
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+// NSLog(@"Output radians as degrees: %f", RADIANS_TO_DEGREES(0.785398));
+
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+// NSLog(@"Output degrees as radians: %f", DEGREES_TO_RADIANS(45))
+
 @interface TransformViewController ()
 
 @property (weak, nonatomic) CompassView *compassView;
@@ -42,6 +48,10 @@
 #pragma mark actions
 
 
+- (IBAction)rotateCompassByAngle:(UISlider *)sender
+{
+    ((CompassLayer *)self.compassView.layer).rotationLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(sender.value), 0, 1, 0);
+}
 
 
 
