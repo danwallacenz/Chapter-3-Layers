@@ -744,7 +744,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="x" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQn-gf-2g2">
-                                        <rect key="frame" x="142" y="647" width="9" height="21"/>
+                                        <rect key="frame" x="142" y="647" width="56" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -769,13 +769,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="y" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kp4-Bs-GxT">
-                                        <rect key="frame" x="142" y="681" width="9" height="21"/>
+                                        <rect key="frame" x="142" y="681" width="56" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="z" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-kL-ynS">
-                                        <rect key="frame" x="187" y="647" width="11" height="21"/>
+                                        <rect key="frame" x="264" y="681" width="56" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -850,23 +850,26 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2π = 360º" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDy-NO-TYl">
-                                        <rect key="frame" x="227" y="614" width="82" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lNU-Vs-sKa">
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lNU-Vs-sKa">
                                         <rect key="frame" x="18" y="643" width="118" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="rotationVectorXSliderChanged:" destination="j6X-Nr-CNC" eventType="valueChanged" id="FhS-hf-meA"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="J0z-8L-QUV">
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="J0z-8L-QUV">
                                         <rect key="frame" x="18" y="681" width="118" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="rotationVectorYSliderChanged:" destination="j6X-Nr-CNC" eventType="valueChanged" id="2bj-QA-gBr"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Q5-fQ-5Y6">
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Q5-fQ-5Y6">
                                         <rect key="frame" x="204" y="643" width="118" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="rotationVectorZSliderChanged:" destination="j6X-Nr-CNC" eventType="valueChanged" id="VxG-zq-i27"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -886,6 +889,8 @@
                     <tabBarItem key="tabBarItem" title="Transforms" id="HYZ-bu-7rK"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="rotationAngleLabel" destination="baX-QQ-EEX" id="SA4-mN-6we"/>
+                        <outlet property="rotationAngleSlider" destination="oNf-xN-xq9" id="nXc-23-EO3"/>
                         <outlet property="rotationLayerAnchorPointXSlider" destination="fT5-5m-dXa" id="trO-j4-rLm"/>
                         <outlet property="rotationLayerAnchorPointXValueLabel" destination="7hC-ED-QPi" id="BzR-kV-NoF"/>
                         <outlet property="rotationLayerAnchorPointYSlider" destination="bRX-Rv-imq" id="3BN-Mb-50L"/>
@@ -896,6 +901,12 @@
                         <outlet property="rotationLayerPositionYValueLabel" destination="SMO-ZE-Kwk" id="hwn-di-T7z"/>
                         <outlet property="rotationLayerZPositionLabel" destination="kq0-hz-ceU" id="ziC-Dn-dPu"/>
                         <outlet property="rotationLayerZPositionSlider" destination="35d-Lt-nSU" id="EYE-CC-MAo"/>
+                        <outlet property="rotationVectorXLabel" destination="WQn-gf-2g2" id="HDd-g2-k7P"/>
+                        <outlet property="rotationVectorXSlider" destination="lNU-Vs-sKa" id="wGu-iy-ABx"/>
+                        <outlet property="rotationVectorYLabel" destination="kp4-Bs-GxT" id="Uzt-zZ-83R"/>
+                        <outlet property="rotationVectorYSlider" destination="J0z-8L-QUV" id="drn-fv-x2l"/>
+                        <outlet property="rotationVectorZLabel" destination="UuF-kL-ynS" id="U4y-ld-Sz2"/>
+                        <outlet property="rotationVectorZSlider" destination="6Q5-fQ-5Y6" id="WGX-Wj-3Gc"/>
                         <outlet property="transformM34DemominatorSlider" destination="HPg-3n-JXb" id="JTu-5G-HIg"/>
                         <outlet property="transformM34Label" destination="Tjc-Qj-nd6" id="ifk-aL-bTL"/>
                     </connections>

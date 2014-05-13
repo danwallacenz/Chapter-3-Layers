@@ -41,6 +41,19 @@
 @property (weak, nonatomic) IBOutlet UISlider *rotationLayerPositionYSlider;
 @property (weak, nonatomic) IBOutlet UILabel *rotationLayerPositionYValueLabel;
 
+
+// rotation controls
+@property (weak, nonatomic) IBOutlet UISlider *rotationAngleSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rotationAngleLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *rotationVectorXSlider;
+@property (weak, nonatomic) IBOutlet UISlider *rotationVectorYSlider;
+@property (weak, nonatomic) IBOutlet UISlider *rotationVectorZSlider;
+
+@property (weak, nonatomic) IBOutlet UILabel *rotationVectorXLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rotationVectorYLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rotationVectorZLabel;
+
 @end
 
 @implementation TransformViewController
@@ -50,9 +63,36 @@
 
 - (IBAction)rotateCompassByAngle:(UISlider *)sender
 {
-    ((CompassLayer *)self.compassView.layer).rotationLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(sender.value), 0, 1, 0);
+    CGFloat angleInRadians = DEGREES_TO_RADIANS(self.rotationAngleSlider.value);
+    CGFloat vectorX = self.rotationVectorXSlider.value;
+    CGFloat vectorY = self.rotationVectorYSlider.value;
+    CGFloat vectorZ = self.rotationVectorZSlider.value;
+    
+//    ((CompassLayer *)self.compassView.layer).rotationLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(sender.value), 0, 1, 0);
+
+     ((CompassLayer *)self.compassView.layer).rotationLayer.transform = CATransform3DMakeRotation(angleInRadians, vectorX, vectorY, vectorZ);
+    
+    self.rotationAngleLabel.text = [NSString stringWithFormat:@"%1.0f", sender.value];
 }
 
+- (IBAction)rotationVectorXSliderChanged:(UISlider *)sender
+{
+    CGFloat angleInRadians = DEGREES_TO_RADIANS(self.rotationAngleSlider.value);
+    CGFloat vectorX = self.rotationVectorXSlider.value;
+    CGFloat vectorY = self.rotationVectorYSlider.value;
+    CGFloat vectorZ = self.rotationVectorZSlider.value;
+    
+    self.rotationVectorXLabel.text = [NSString stringWithFormat:@"x=%1.1f",sender.value];
+}
+
+- (IBAction)rotationVectorYSliderChanged:(UISlider *)sender
+{
+     self.rotationVectorYLabel.text = [NSString stringWithFormat:@"x=%1.1f",sender.value];
+}
+- (IBAction)rotationVectorZSliderChanged:(UISlider *)sender
+{
+    self.rotationVectorZLabel.text = [NSString stringWithFormat:@"x=%1.1f",sender.value];
+}
 
 
 
@@ -123,6 +163,27 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    @property (weak, nonatomic) IBOutlet UILabel *rotationVectorXLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *rotationVectorYLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *rotationVectorZLabel;
+    
+//    @property (weak, nonatomic) IBOutlet UISlider *rotationVectorXSlider;
+//    @property (weak, nonatomic) IBOutlet UISlider *rotationVectorYSlider;
+//    @property (weak, nonatomic) IBOutlet UISlider *rotationVectorZSlider;
+    
+    self.rotationVectorXLabel.text = [NSString stringWithFormat:@"x=%1.1f", self.rotationVectorXSlider.value];
+    self.rotationVectorYLabel.text = [NSString stringWithFormat:@"y=%1.1f", self.rotationVectorYSlider.value];
+    self.rotationVectorZLabel.text = [NSString stringWithFormat:@"z=%1.1f", self.rotationVectorZSlider.value];
+//    @property (weak, nonatomic) IBOutlet UISlider *rotationAngleSlider;
+//    @property (weak, nonatomic) IBOutlet UILabel *rotationAngleLabel;
+    
+    self.rotationAngleLabel.text = [NSString stringWithFormat:@"%1.0f", self.rotationAngleSlider.value];
+    
 }
 
 - (void)viewDidLoad
