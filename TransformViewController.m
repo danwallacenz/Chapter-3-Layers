@@ -8,6 +8,7 @@
 
 #import "TransformViewController.h"
 #import "CompassView.h"
+#import "CompassLayer.h"
 
 @interface TransformViewController ()
 
@@ -16,11 +17,23 @@
 @property (weak, nonatomic) IBOutlet UILabel *transformM34Label;
 @property (weak, nonatomic) IBOutlet UISlider *transformM34DemominatorSlider;
 
+@property (weak, nonatomic) IBOutlet UILabel *rotationLayerZPositionLabel;
+@property (weak, nonatomic) IBOutlet UISlider *rotationLayerZPositionSlider;
+
 @end
 
 @implementation TransformViewController
 
 #pragma mark actions
+
+
+- (IBAction)rotationLayerZPositionChanged:(UISlider *)sender
+{
+    ((CompassLayer *)self.compassView.layer).rotationLayer.zPosition = sender.value;
+    self.rotationLayerZPositionLabel.text = [NSString stringWithFormat: @"%1.0f", sender.value];
+
+}
+
 - (IBAction)transformM34DenominatorChanged:(UISlider *)sender
 {
     CATransform3D transform = CATransform3DIdentity;

@@ -9,5 +9,5 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface CompassLayer : CALayer
-
+@property (strong , nonatomic) CALayer *rotationLayer;
 @end

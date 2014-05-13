@@ -11,7 +11,7 @@
 @interface CompassLayer()
 
 @property (nonatomic, strong) CALayer *arrow;
-@property (strong , nonatomic) CALayer *rotationLayer;
+//@property (strong , nonatomic) CALayer *rotationLayer;
 
 @end
 
@@ -96,6 +96,7 @@ BOOL _didSetup;
     self.rotationLayer = g;
     self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
     self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
+    
     self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
     
     CATransform3D transform = CATransform3DIdentity;
