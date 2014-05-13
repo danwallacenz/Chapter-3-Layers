@@ -9,10 +9,12 @@
 #import "TransformViewController.h"
 #import "CompassView.h"
 #import "CompassLayer.h"
+#import "OverlayLayer.h"
 
 @interface TransformViewController ()
 
 @property (weak, nonatomic) CompassView *compassView;
+@property (strong,nonatomic) OverlayLayer *overlayLayer;
 
 @property (weak, nonatomic) IBOutlet UILabel *transformM34Label;
 @property (weak, nonatomic) IBOutlet UISlider *transformM34DemominatorSlider;
@@ -20,11 +22,65 @@
 @property (weak, nonatomic) IBOutlet UILabel *rotationLayerZPositionLabel;
 @property (weak, nonatomic) IBOutlet UISlider *rotationLayerZPositionSlider;
 
+@property (weak, nonatomic) IBOutlet UISlider *rotationLayerAnchorPointXSlider;
+@property (weak, nonatomic) IBOutlet UISlider *rotationLayerAnchorPointYSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rotationLayerAnchorPointXValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rotationLayerAnchorPointYValueLabel;
+
+
+
+@property (weak, nonatomic) IBOutlet UISlider *rotationLayerPositionXSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rotationLayerPositionXValueLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *rotationLayerPositionYSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rotationLayerPositionYValueLabel;
+
 @end
 
 @implementation TransformViewController
 
 #pragma mark actions
+
+- (IBAction)rotationLayerPositionXChanged:(UISlider *)sender
+{
+    ((CompassLayer *)self.compassView.layer).rotationLayer.position = CGPointMake(sender.value, self.rotationLayerPositionYSlider.value);
+    self.rotationLayerPositionXValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+}
+
+- (IBAction)rotationLayerPositionYChanged:(UISlider *)sender
+{
+    ((CompassLayer *)self.compassView.layer).position = CGPointMake(self.rotationLayerPositionXSlider.value, sender.value);
+    self.rotationLayerPositionYValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+}
+
+/*
+ 
+ // 3D rotation
+ self.rotationLayer = g;
+ self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
+ self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
+ 
+ self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
+ 
+ CATransform3D transform = CATransform3DIdentity;
+ transform.m34 = -1.0/1000.0;
+ self.sublayerTransform = transform;
+ 
+ 
+ */
+
+
+- (IBAction)rotationLayerAnchorPointXChanged:(UISlider *)sender
+{
+    ((CompassLayer *)self.compassView.layer).rotationLayer.anchorPoint = CGPointMake(sender.value, self.rotationLayerAnchorPointYSlider.value);
+    self.rotationLayerAnchorPointXValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+}
+
+- (IBAction)rotationLayerAnchorPointYChanged:(UISlider *)sender
+{
+   ((CompassLayer *)self.compassView.layer).rotationLayer.anchorPoint = CGPointMake(self.rotationLayerAnchorPointXSlider.value, sender.value);
+    self.rotationLayerAnchorPointYValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+}
 
 
 - (IBAction)rotationLayerZPositionChanged:(UISlider *)sender
@@ -64,6 +120,13 @@
 //    compassView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: compassView];
     self.compassView = compassView; // for zPosition changes later.
+    
+    self.overlayLayer = [OverlayLayer new];
+    [self.view.layer addSublayer:  self.overlayLayer];
+    
+
+    
+    [self.overlayLayer setNeedsDisplay];
 
 }
 
