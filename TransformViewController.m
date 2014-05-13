@@ -60,6 +60,17 @@
 
 #pragma mark actions
 
+- (IBAction)reset:(id)sender
+{
+    [self.compassView removeFromSuperview];
+    self.compassView = nil;
+    [self addACompassView];
+}
+
+- (IBAction)toggleGrid:(id)sender
+{
+    self.overlayLayer.hidden = !self.overlayLayer.hidden;
+}
 
 - (IBAction)rotateCompassByAngle:(UISlider *)sender
 {
@@ -87,14 +98,13 @@
 
 - (IBAction)rotationVectorYSliderChanged:(UISlider *)sender
 {
-     self.rotationVectorYLabel.text = [NSString stringWithFormat:@"x=%1.1f",sender.value];
+     self.rotationVectorYLabel.text = [NSString stringWithFormat:@"y=%1.1f",sender.value];
 }
+
 - (IBAction)rotationVectorZSliderChanged:(UISlider *)sender
 {
-    self.rotationVectorZLabel.text = [NSString stringWithFormat:@"x=%1.1f",sender.value];
+    self.rotationVectorZLabel.text = [NSString stringWithFormat:@"z=%1.1f",sender.value];
 }
-
-
 
 - (IBAction)rotationLayerPositionXChanged:(UISlider *)sender
 {
@@ -124,17 +134,48 @@
  
  */
 
-
 - (IBAction)rotationLayerAnchorPointXChanged:(UISlider *)sender
 {
-    ((CompassLayer *)self.compassView.layer).rotationLayer.anchorPoint = CGPointMake(sender.value, self.rotationLayerAnchorPointYSlider.value);
-    self.rotationLayerAnchorPointXValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+    CGPoint anchorPoint = CGPointMake(sender.value, self.rotationLayerAnchorPointYSlider.value);
+    CALayer *rotationLayer = ((CompassLayer *)self.compassView.layer).rotationLayer;
+    rotationLayer.anchorPoint = anchorPoint;
+    self.rotationLayerAnchorPointXValueLabel.text = [NSString stringWithFormat: @"%1.2f", sender.value];
+    
+    anchorPoint = CGPointMake(self.compassView.frame.origin.x + (anchorPoint.x * self.compassView.frame.size.width),
+                              self.compassView.frame.origin.y + (anchorPoint.y * self.compassView.frame.size.height));
+    
+    [self.overlayLayer drawPoint: anchorPoint
+                       withColor: [UIColor greenColor]
+                           label: [NSString stringWithFormat:@"anchor point (%1.1f,%1.1f)", anchorPoint.x, anchorPoint.y]
+                            name: @"anchor.point"];
+    
+    [self.overlayLayer drawPoint: rotationLayer.position
+                       withColor: [UIColor redColor]
+                           label: [NSString stringWithFormat:@"position (%1.1f,%1.1f)", anchorPoint.x, anchorPoint.y]
+                            name: @"position"];
 }
 
 - (IBAction)rotationLayerAnchorPointYChanged:(UISlider *)sender
 {
-   ((CompassLayer *)self.compassView.layer).rotationLayer.anchorPoint = CGPointMake(self.rotationLayerAnchorPointXSlider.value, sender.value);
-    self.rotationLayerAnchorPointYValueLabel.text = [NSString stringWithFormat: @"%1.1f", sender.value];
+    CGPoint anchorPoint = CGPointMake(self.rotationLayerAnchorPointXSlider.value, sender.value);
+    CALayer *rotationLayer = ((CompassLayer *)self.compassView.layer).rotationLayer;
+    rotationLayer.anchorPoint = anchorPoint;
+    
+    self.rotationLayerAnchorPointYValueLabel.text = [NSString stringWithFormat: @"%1.2f", sender.value];
+    
+    anchorPoint = CGPointMake(self.compassView.frame.origin.x + (anchorPoint.x * self.compassView.frame.size.width),
+                              self.compassView.frame.origin.y + (anchorPoint.y * self.compassView.frame.size.height));
+    
+    [self.overlayLayer drawPoint: anchorPoint
+                       withColor: [UIColor greenColor]
+                           label: [NSString stringWithFormat:@"anchor point (%1.1f,%1.1f)", anchorPoint.x, anchorPoint.y]
+                            name: @"anchor.point"];
+    
+    [self.overlayLayer drawPoint: rotationLayer.position
+                       withColor: [UIColor redColor]
+                           label: [NSString stringWithFormat:@"position (%1.1f,%1.1f)", anchorPoint.x, anchorPoint.y]
+                            name: @"position"];
+    
 }
 
 
@@ -186,24 +227,28 @@
     
 }
 
+#warning TODO set the controls to the actual values of the view, etc.
+-(void)addACompassView
+{
+    // Add a CompassView to to my view.  It has a CompassLayer as its layer.
+    CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
+    [self.view addSubview: compassView];
+    self.compassView = compassView; // for zPosition changes later.
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
     // Add a CompassView to to my view.  It has a CompassLayer as its layer.
-    CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
-//    compassView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview: compassView];
-    self.compassView = compassView; // for zPosition changes later.
+    [self addACompassView];
     
     self.overlayLayer = [OverlayLayer new];
+    self.overlayLayer.hidden = YES;
     [self.view.layer addSublayer:  self.overlayLayer];
     
-
-    
     [self.overlayLayer setNeedsDisplay];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -211,17 +256,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark -
 

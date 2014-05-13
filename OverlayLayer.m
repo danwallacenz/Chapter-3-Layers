@@ -213,7 +213,7 @@
     grid.contentsScale = [UIScreen mainScreen].scale;
     grid.lineWidth = 1.0;
     grid.lineDashPattern = @[@2,@3];
-    grid.fillColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.1].CGColor;
+    grid.fillColor = [[UIColor lightGrayColor] colorWithAlphaComponent: 0.5].CGColor;
 //    grid.strokeColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.5].CGColor;
     
     CGMutablePathRef p = CGPathCreateMutable();
@@ -222,6 +222,7 @@
     // height and width are flipped in landscape
     float height = 0;
     float width = 0;
+    
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
     if(orientation == UIInterfaceOrientationPortrait){

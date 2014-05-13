@@ -100,19 +100,19 @@ BOOL _didSetup;
     
     // 3D rotation
     self.rotationLayer = g;
-    self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
-    self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
-    
-    
-    CGFloat angle = DEGREES_TO_RADIANS(45);
-//    self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
-    self.rotationLayer.transform = CATransform3DMakeRotation(angle, 0, 1, 0);
-    
-
-
-    CATransform3D transform = CATransform3DIdentity;
-    transform.m34 = -1.0/1000.0;
-    self.sublayerTransform = transform;
+//    self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
+//    self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
+//    
+//    
+//    CGFloat angle = DEGREES_TO_RADIANS(45);
+////    self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
+//    self.rotationLayer.transform = CATransform3DMakeRotation(angle, 0, 1, 0);
+//    
+//
+//
+//    CATransform3D transform = CATransform3DIdentity;
+//    transform.m34 = -1.0/1000.0;
+//    self.sublayerTransform = transform;
 }
 
 - (void) resizeArrowLayer: (CALayer*) arrow {
