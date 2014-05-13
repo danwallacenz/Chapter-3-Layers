@@ -9,7 +9,10 @@
 #import "CompassLayer.h"
 
 @interface CompassLayer()
-@property (nonatomic, strong) CALayer* arrow;
+
+@property (nonatomic, strong) CALayer *arrow;
+@property (strong , nonatomic) CALayer *rotationLayer;
+
 @end
 
 @implementation CompassLayer {
@@ -88,6 +91,14 @@ BOOL _didSetup;
      [self performSelector:@selector(mask:) withObject:arrow];
     
     self.arrow = arrow;
+    
+    // 3D rotation
+//    self.rotationLayer = g;
+    self.rotationLayer = self;
+    
+    self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
+    self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
+    self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
 }
 
 - (void) resizeArrowLayer: (CALayer*) arrow {

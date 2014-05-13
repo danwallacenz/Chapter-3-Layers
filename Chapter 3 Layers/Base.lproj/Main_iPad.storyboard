@@ -672,15 +672,24 @@
                         <viewControllerLayoutGuide type="bottom" id="ScJ-Me-3wB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WXB-uN-9qx">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJK-LC-vg1">
+                                <rect key="frame" x="675" y="0.0" width="329" height="748"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Transforms" id="HYZ-bu-7rK"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDw-JN-axV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-996" y="-174"/>
+            <point key="canvasLocation" x="943" y="-2257"/>
         </scene>
         <!--Content Resizin And Positioning View Controller - Content Resizing and Positioning-->
         <scene sceneID="lhq-wc-Mjp">
