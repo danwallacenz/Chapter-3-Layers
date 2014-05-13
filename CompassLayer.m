@@ -48,7 +48,7 @@ BOOL _didSetup;
     CGPathAddEllipseInRect(p, nil, CGRectInset(self.bounds, 3, 3));
     circle.path = p;
     CGPathRelease(p);
-    [self addSublayer:circle];
+    [g addSublayer:circle];
     circle.bounds = self.bounds;
     circle.position = CGPointMake(CGRectGetMidX(self.bounds),
                                   CGRectGetMidY(self.bounds));
@@ -80,7 +80,7 @@ BOOL _didSetup;
     arrow.anchorPoint = CGPointMake(0.5, 0.8);
     arrow.delegate = self;
     arrow.affineTransform = CGAffineTransformMakeRotation(M_PI/5.0);
-    [self addSublayer:arrow];
+    [g addSublayer:arrow];
     [arrow setNeedsDisplay];
     
     
@@ -93,12 +93,14 @@ BOOL _didSetup;
     self.arrow = arrow;
     
     // 3D rotation
-//    self.rotationLayer = g;
-    self.rotationLayer = self;
-    
+    self.rotationLayer = g;
     self.rotationLayer.anchorPoint = CGPointMake(1.0, 0.5);
     self.rotationLayer.position = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMidY(self.bounds));
     self.rotationLayer.transform = CATransform3DMakeRotation(M_PI/4.0, 0, 1, 0);
+    
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = -1.0/1000.0;
+    self.sublayerTransform = transform;
 }
 
 - (void) resizeArrowLayer: (CALayer*) arrow {

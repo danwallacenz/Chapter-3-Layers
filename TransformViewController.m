@@ -13,12 +13,22 @@
 
 @property (weak, nonatomic) CompassView *compassView;
 
+@property (weak, nonatomic) IBOutlet UILabel *transformM34Label;
+@property (weak, nonatomic) IBOutlet UISlider *transformM34DemominatorSlider;
+
 @end
 
 @implementation TransformViewController
 
 #pragma mark actions
-
+- (IBAction)transformM34DenominatorChanged:(UISlider *)sender
+{
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = -1.0/[NSNumber numberWithDouble: sender.value].floatValue;
+    self.compassView.layer.sublayerTransform = transform;
+    
+    self.transformM34Label.text = [NSString stringWithFormat: @"transform.m34 = -1.0/%1.1f", sender.value];
+}
 
 #pragma mark - UIViewController methods
 
@@ -38,7 +48,7 @@
 
     // Add a CompassView to to my view.  It has a CompassLayer as its layer.
     CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(100, 100, 400, 400)];
-    compassView.backgroundColor = [UIColor lightGrayColor];
+//    compassView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: compassView];
     self.compassView = compassView; // for zPosition changes later.
 
